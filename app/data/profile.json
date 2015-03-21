@@ -11,6 +11,7 @@
 		'age' : '81'
 		'position' : 'Senator',
 		'state' : 'CA',
+		'stateFull' : 'California',
 		'district' : '',
 		'record' : [
 			{

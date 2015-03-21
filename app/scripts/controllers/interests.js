@@ -9,28 +9,14 @@
  */
 app.controller('InterestsCtrl', function ($scope, $http) {
 
-    $scope.interests = [
-		{
-			'name' : 'Environment',
-			'support' : 1
-		},
-		{
-			'name' : 'Health',
-			'support' : 1
-		},
-		{
-			'name' : 'Pro Life',
-			'support' : 0
-		}
-	];
+    $scope.interests = {};
 
 	// Load the json data for intersts
 	$http.get('/data/interests.json')
         .success(function(data) {
-			console.log(data);
             $scope.interests = data;
         })
-        .error(function(data,status,error,config){
+        .error(function(data, status, error, config){
             $scope.interests = [{heading:"Error",description:"Could not load json   data"}];
 		});
 
