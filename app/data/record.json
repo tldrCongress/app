@@ -5,13 +5,21 @@
 	{
 		'voteNumber' : 75,
 		'session' : 1,
-		'date' : '',
-		'title' : '',
+		'date' : '03/19/2015',
+		'title' : 'A bill to provide justice for the victims of trafficking.',
 		'description' : '',
 		'result' : '',
-		'vote' : 1;
+		'vote' : 0,
+		'staffer_comment': 'Voted no due to clause that prohibits funds for being used for abortion',
 	},
 	{
-		
+		'voteNumber' : 68,
+		'session' : 1,
+		'date' : '03/04/2015',
+		'title' : 'A bill to approve the Keystone XL Pipeline.',
+		'description' : '',
+		'result' : '',
+		'vote' : 0,
+		'staffer_comment': 'Voted no due to environmental concerns.',
 	}
 ]
