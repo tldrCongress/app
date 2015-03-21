@@ -25,15 +25,14 @@ app.controller('InterestsCtrl', function ($scope, $http) {
 	];
 
 	// Load the json data for intersts
-	$http.get('/data/intersts.json')
+	$http.get('/data/interests.json')
         .success(function(data) {
 			console.log(data);
-            $scope.contents=data[0];
+            $scope.interests = data;
         })
         .error(function(data,status,error,config){
-            $scope.contents = [{heading:"Error",description:"Could not load json   data"}];
+            $scope.interests = [{heading:"Error",description:"Could not load json   data"}];
 		});
-
 
 	// Updates the user's interest settings, i = interest number in array
 	$scope.toggleInterest = function(i)
