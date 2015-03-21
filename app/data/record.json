@@ -1,0 +1,17 @@
+// JSON Document
+// Voting record of representative
+
+[
+	{
+		'voteNumber' : 75,
+		'session' : 1,
+		'date' : '',
+		'title' : '',
+		'description' : '',
+		'result' : '',
+		'vote' : 1;
+	},
+	{
+		
+	}
+]
