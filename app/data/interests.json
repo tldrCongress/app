@@ -1,17 +1,18 @@
-// JSON Document
-// Voters interests
-
 [
 	{
-		'name' : 'Environment',
-		'support' : 1
+		"name" : "Environment",
+		"support" : 1
 	},
 	{
-		'name' : 'Health',
-		'support' : 1
+		"name" : "Health",
+		"support" : 1
 	},
 	{
-		'name' : 'Pro Life',
-		'support' : 0
+		"name" : "Pro Life",
+		"support" : 0
+	},
+	{
+		"name" : "Pro Choice",
+		"support" : 0
 	}
 ]

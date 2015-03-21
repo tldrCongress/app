@@ -31,9 +31,9 @@ var app = angular.module('hack4CongressApp', [
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl'
       })
-      .when('/interest', {
-        templateUrl: 'views/interest.html',
-        controller: 'InterestCtrl'
+      .when('/interests', {
+        templateUrl: 'views/interests.html',
+        controller: 'InterestsCtrl'
       })
       .when('/register', {
         templateUrl: 'views/register.html',
