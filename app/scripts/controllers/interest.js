@@ -7,11 +7,18 @@
  * # InterestCtrl
  * Controller of the hack4CongressApp
  */
-angular.module('hack4CongressApp')
-  .controller('InterestCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+app.controller('InterestCtrl', function ($scope) {
+
+    $scope.intersts = {};
+
+	// Load the json data for intersts
+	$http.get('/data/intersts.json')
+        .success(function(data) {
+			console.log(data);
+            $scope.contents=data[0];
+        })
+        .error(function(data,status,error,config){
+            $scope.contents = [{heading:"Error",description:"Could not load json   data"}];
+		});
+
+});
