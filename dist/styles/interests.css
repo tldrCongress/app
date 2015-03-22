@@ -1,0 +1,8 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.btn-tile{ border:solid 4px; margin-right: 5px; margin-bottom: 9px; }
+.btn-tile:not(.active){
+	background-color:transparent !important;
+	color:#1abc9c;
+}

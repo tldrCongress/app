@@ -1,0 +1,7 @@
+<div class="row">
+	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+    	<h1 class="title text-center">I Care About</h1>
+
+		<button ng-repeat="interest in interests" type="button" ng-name="{{interest.name}}" class="btn btn-primary btn-tile" ng-click="toggleInterest($index)" ng-class="{active: interest.support}"><span ng-cloak ng-show="interest.support"><i class="glyphicon glyphicon-check"></i>&nbsp;</span>{{interest.name}}</button>
+	</div>
+</div>

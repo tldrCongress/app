@@ -1,0 +1,16 @@
+[
+	{
+		"name" : "Weekly Summaries",
+		"icon" : "fui-bookmark",
+		"description" : "",
+		"shortDescription" : "Get weekly summaries of your representatives activities?",
+		"enabled" : true
+	},
+	{
+		"name" : "Notifications",
+		"icon" : "fui-chat",
+		"description" : "",
+		"shortDescription" : "Alert me on important legislative matters?",
+		"enabled" : false
+	}
+]
