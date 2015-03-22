@@ -29,7 +29,6 @@ app.controller('DashboardCtrl', function ($scope, $http) {
 	// Load the voting record
 	$http.get('/data/record.json')
 		.success(function(d) {
-			console.log(d);
 			$scope.votes = d;
 		})
 		.error(function(data, status, error, config){
