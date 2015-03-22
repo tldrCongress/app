@@ -8,6 +8,7 @@
  * Controller of the hack4CongressApp
  */
 app.controller('InterestsCtrl', function ($scope, $http, Interests, VoterInterests, Voter ) {
+app.controller('InterestsCtrl', function ($scope, $http, $firebase, Interests, VoterInterests, Voter ) {
 
     var vid = 'v001'; // HARD CODED FOR NOW
     $scope.voter = Voter.get(vid);
