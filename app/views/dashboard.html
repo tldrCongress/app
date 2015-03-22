@@ -1,43 +1,44 @@
-<div class="row">
+<div class="row-fluid clearfix">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
     	<div class="img-circle" style="width:240px;height:240px;overflow:hidden;margin:0 auto;">
 	        <img width="100%" class="" ng-class="" ng-src="/images/profilePic{{rep.firstName}}{{rep.lastName}}.jpg" />
 		</div>
-        <p>{{rep.position}} {{rep.firstName}} {{rep.lastName}}</p>
-        <p><img width="32" ng-src="/images/state-icons/{{rep.state}}.png" />{{rep.stateFull}}</p>
+      <h6>{{repInfo.roles[0].title_long}} {{repInfo.firstname}} {{repInfo.lastname}}</h6>
+      <p class="uppercase"><img width="32" ng-src="/images/state-icons/{{rep.state}}.png" />&nbsp;{{rep.stateFull}}</p>
 	</div>
 </div>
 
-<div class="row well">
+<div class="row-fluid clearfix well">
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-    	<div class="lead">{{score}}%</div>
+    	<div class="lead giant" style="margin-bottom:0;">{{score}}%</div>
 	</div>
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-center">
-        <div class="progress">
+        <div class="progress" style="margin-top:28px;">
             <div class="progress-bar" ng-style="{ 'width' : score+'%'}"></div>
 		</div>
 	</div>
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
-        <div><i class="glyphicon glyphicon-chevron-up lead"></i></div>
+        <div style="margin-top:12px;"><i class="glyphicon glyphicon-chevron-up lead" style="margin-bottom:0;"></i></div>
     </div>
 </div>
 
-<div class="row">
+<div class="row-fluid clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <span class="glyphicon glyphicon-option-horizontal"></span>
     </div>
 </div>
 
-<div class="row" ng-repeat="vote in votes">
+<div class="row-fluid clearfix" ng-repeat="voteData in votes">
 	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 		<table class="" width="100%">
         	<tr>
-            	<td width="15%">{{vote.voteNumber}}</td>
+            	<td width="15%">{{voteData.vote.number}}</td>
 		        <td width="70%" align="left">
-                	<h6>{{vote.title}}</h6>
-                	<small style="color:#bfbfbf">{{vote.date | date:'dd MMM yyyy' || ''}}</small>
+                	<h6>{{voteData.vote.question}}</h6>
+                	<small style="color:#bfbfbf">{{voteData.vote.created | date:'EEEE, MMM dd, yyyy - h:mm a' || ''}}</small>
                 </td>
-                <td width="15%"><i class="fui-check"></i><i class="fui-cross"></i></td>
+                <!-- {{voteData.option.key == '+'}} -->
+                <td width="15%"><i ng-hide="voteData.option.key == '-'" class="fui-check"></i><i class="fui-cross" ng-hide"voteData.option.key == '+'"></i></td>
             </tr>
         </table>
     </div>

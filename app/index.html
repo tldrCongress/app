@@ -1,5 +1,6 @@
 <!doctype html>
 <html class="no-js">
+
 <head>
     <meta charset="utf-8">
     <title>TL;DR Congress! We the people: let's get on this, yo!</title>
@@ -9,7 +10,7 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-	<link rel="stylesheet" href="bower_components/flat-ui/dist/css/flat-ui.css" />
+	<link rel="stylesheet" href="components/flat-ui/dist/css/flat-ui.css" />
     <!-- endbower -->
     <!-- endbuild -->
     
@@ -20,64 +21,59 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 </head>
+
 <body ng-app="hack4CongressApp">
-    <!--[if lt IE 7]>
+  <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-    <!-- Add your site or application content here -->
-	<div class="container">
-		<div class="header">
-			<ul class="nav nav-pills pull-right">
-				<li><a ng-href="#">Home</a></li>
-				<li><a ng-href="#/about">About</a></li>
-				<li><a ng-href="#/register">Register</a></li>
-                <li><a ng-href="#/interests">Interests</a></li>
-                <li><a ng-href="#/dashboard">Dashboard</a></li>
-			</ul>
-			<h3 class="text-muted">hack4Congress</h3>
-		</div>
-
-		<div ng-view=""></div>
-
-	</div>
-
-    <!-- build:js(.) scripts/oldieshim.js -->
-    <!--[if lt IE 9]>
+  <!-- Add your site or application content here -->
+  <div class="container">
+    <div class="header">
+      <ul class="nav nav-pills pull-right">
+        <li><a ng-href="#">Home</a></li>
+        <li><a ng-href="#/about">About</a></li>
+        <li><a ng-href="#/register">Register</a></li>
+        <li><a ng-href="#/interests">Interests</a></li>
+        <li><a ng-href="#/dashboard">Dashboard</a></li>
+        <li><a ng-href="#/mySettings">Settings</a></li>
+      </ul>
+      <h3 class="text-muted">hack4Congress</h3>
+    </div>
+    <div ng-view=""></div>
+  </div>
+  <!-- build:js(.) scripts/oldieshim.js -->
+  <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
     <![endif]-->
-    <!-- endbuild -->
-
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
-    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
-    <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
-    <script type="text/javascript" src="bower_components/angular-touch/angular-touch.js"></script>
-    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
-    <script type="text/javascript" src="bower_components/anijs/dist/anijs-min.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-
-
-    <!-- Firebase -->
-    <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
-    <!-- AngularFire -->
-    <script type="text/javascript" src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
-
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script type="text/javascript" src="scripts/app.js"></script>
-        <script type="text/javascript" src="scripts/controllers/main.js"></script>
-        <script type="text/javascript" src="scripts/controllers/about.js"></script>
-        <script type="text/javascript" src="scripts/controllers/register.js"></script>
-        <script type="text/javascript" src="scripts/controllers/interests.js"></script>
-        <script type="text/javascript" src="scripts/controllers/dashboard.js"></script>
-        <script src="scripts/controllers/mysettings.js"></script>
-        <!-- endbuild -->
+  <!-- endbuild -->
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+  <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+  <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+  <script type="text/javascript" src="bower_components/angular-touch/angular-touch.js"></script>
+  <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+  <script type="text/javascript" src="bower_components/anijs/dist/anijs-min.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- Firebase -->
+  <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+  <!-- AngularFire -->
+  <script type="text/javascript" src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script type="text/javascript" src="scripts/app.js"></script>
+  <script type="text/javascript" src="scripts/controllers/main.js"></script>
+  <script type="text/javascript" src="scripts/controllers/about.js"></script>
+  <script type="text/javascript" src="scripts/controllers/register.js"></script>
+  <script type="text/javascript" src="scripts/controllers/interests.js"></script>
+  <script type="text/javascript" src="scripts/controllers/dashboard.js"></script>
+  <script src="scripts/controllers/mysettings.js"></script>
+  <!-- endbuild -->
 </body>
+
 </html>
