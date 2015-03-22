@@ -18,22 +18,34 @@ angular.module('hack4CongressApp.services', ['firebase'])
       voterObj.$loaded().then(function() {});
       return voterObj;
     },
-    create: function (vid) {
-      $firebase(voterRoot).$set(vid);
+    create: function (vid, email, zip) {
+      $firebase(voterRoot).$set(vid, {"email": email});
+      $firebase(voterRoot).$update(vid, {"zip": email});
       return vid;
     },
   };
 })
-.factory('Interests', function($firebase, hack4CongressFirebase) {
-  var interestsRoot = hack4CongressFirebase.child("Interests");
+.factory('VoterInterests', function($firebase, hack4CongressFirebase) {
+  var voterInterestsRoot = hack4CongressFirebase.child("VoterInterests");
   return {
     save: function(vid, interests) {
-      $firebase(interestsRoot).$set(vid, {"interests": interests});
+      $firebase(voterInterestsRoot).$set(vid, {"interests": interests});
       return vid
     },
     get: function(vid) {
-      var interests = interestsRoot.child(vid);
+      var interests = voterInterestsRoot.child(vid);
       return $firebase(interests).$asObject();
     }
   }
-});
+})
+.factory('Interests', function($firebase, hack4CongressFirebase) {
+  var interestsRoot = hack4CongressFirebase.child("Interests");
+  return {
+    get: function() {
+      var interests = $firebase(interestsRoot);
+      var interestsObj = interests.$asObject();
+      return interestsObj;
+    }
+  }
+})
+;
