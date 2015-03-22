@@ -15,7 +15,6 @@ var app = angular.module('hack4CongressApp', [
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'firebase'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -42,11 +41,4 @@ var app = angular.module('hack4CongressApp', [
       .otherwise({
         redirectTo: '/'
       });
-  });
-
-  app.controller("hack4CongressCtrl", function($scope, $firebaseObject) {
-    var ref = new Firebase("https://blistering-inferno-7388.firebaseio.com/");
-
-    // download the data into a local object
-    $scope.data = $firebaseObject(ref);
   });
