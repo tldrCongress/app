@@ -2,9 +2,10 @@
 	{
 		"voteNumber" : 75,
 		"session" : 1,
-		"date" : "03/19/2015",
+		"date" : "2015-03-22T16:45:27.151Z",
 		"title" : "A bill to provide justice for the victims of trafficking.",
 		"description" : "",
+		"topics" : ["health", "human rights"],
 		"result" : "Cloture Motion Rejected (56-42, 3/5 majority required)",
 		"vote" : 0,
 		"staffer_comment": "Voted no due to clause that prohibits funds for being used for abortion"
@@ -12,7 +13,7 @@
 	{
 		"voteNumber" : 68,
 		"session" : 1,
-		"date" : "03/04/2015",
+		"date" : "2015-03-22T16:45:27.151Z",
 		"title" : "A bill to approve the Keystone XL Pipeline.",
 		"description" : "",
 		"result" : "Veto Sustained (62-37, 2/3 majority required)",
