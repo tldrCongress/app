@@ -1,3 +1,7 @@
+@import url('register.css');
+@import url('interests.css');
+@import url('dashboard.css');
+
 /* Space out content a bit */
 body {
   padding-top: 20px;
@@ -24,12 +28,7 @@ body {
   padding-bottom: 19px;
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
+
 
 /* Customize container */
 @media (min-width: 768px) {
