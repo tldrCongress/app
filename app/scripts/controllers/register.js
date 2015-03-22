@@ -7,7 +7,6 @@
  * # RegisterCtrl
  * Controller of the hack4CongressApp
  */
-<<<<<<< HEAD
 app.controller('RegisterCtrl', ['$scope', '$http', function ($scope, $http) {
 
 	$scope.email = '';
@@ -27,9 +26,6 @@ app.controller('RegisterCtrl', ['$scope', '$http', function ($scope, $http) {
 			});
 		})
 	}
-=======
-app.controller('RegisterCtrl', function ($scope, $firebase, Voter) {
->>>>>>> origin/master
 
 	// Registers the user (via email)
    /*$scope.register = function(){
