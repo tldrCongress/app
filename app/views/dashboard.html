@@ -35,9 +35,10 @@
             	<td width="15%">{{voteData.vote.number}}</td>
 		        <td width="70%" align="left">
                 	<h6>{{voteData.vote.question}}</h6>
-                	<small style="color:#bfbfbf">{{voteData.date | date:'dd MMM yyyy' || ''}}</small>
+                	<small style="color:#bfbfbf">{{voteData.vote.created | date:'EEEE, MMM dd, yyyy - h:mm a' || ''}}</small>
                 </td>
-                <td width="15%"><i class="fui-check"></i><i class="fui-cross"></i></td>
+                <!-- {{voteData.option.key == '+'}} -->
+                <td width="15%"><i ng-hide="voteData.option.key == '-'" class="fui-check"></i><i class="fui-cross" ng-hide"voteData.option.key == '+'"></i></td>
             </tr>
         </table>
     </div>

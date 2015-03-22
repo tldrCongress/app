@@ -50,6 +50,7 @@ app.controller('DashboardCtrl', function ($scope, $http) {
     .success(function(votes) {
       $scope.votes = votes.objects;
       console.log($scope.votes);
+      console.log($scope.votes[0].option.key);
     })
     .error(function(data, status, error, config){
       $scope.votes = [{heading:"Error", description:"Could not load json data for votes"}];
