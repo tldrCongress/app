@@ -28,7 +28,14 @@ body {
   padding-bottom: 19px;
 }
 
+.uppercase { text-transform: uppercase; }
+.giant { font-size: 46px; }
 
+.lighter { color: #ccc; }
+.light { color: #888; }
+.grey { color: #262D31; }
+.green { color: #16a085; }
+.red { color: #c44133; }
 
 /* Customize container */
 @media (min-width: 768px) {

@@ -6,33 +6,11 @@
 
 <div class="row-fluid clearfix" ng-repeat="setting in settings">
 	<div class="col-lg-9 col-md-9 col-sm-8 col-xs-8">
+    	<i ng-class="setting.icon" style="float:left;margin:12px 18px 32px 0;"></i>
     	<h6>{{setting.name}}</h6>
-        <small class="light">{{setting.shortDescription}}</small>
+        <small class="light" style="margin-top:-19px;float:left;">{{setting.shortDescription}}</small>
     </div>
-	<div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-		<div style="margin-top:18px;" class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-animate" ng-click="toggleSetting($index)" ng-class="{'bootstrap-switch-on': setting.enabled, 'bootstrap-switch-off': !setting.enabled}"><div class="bootstrap-switch-container"><span class="bootstrap-switch-handle-on bootstrap-switch-primary">ON</span><label class="bootstrap-switch-label">&nbsp;</label><span class="bootstrap-switch-handle-off bootstrap-switch-default">OFF</span><input type="checkbox" data-toggle="switch"></div></div>
+	<div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 text-center">
+		<div style="margin-top:19px;" class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-animate" ng-click="toggleSetting($index)" ng-class="{'bootstrap-switch-on': setting.enabled, 'bootstrap-switch-off': !setting.enabled}"><div class="bootstrap-switch-container"><span class="bootstrap-switch-handle-on bootstrap-switch-primary">ON</span><label class="bootstrap-switch-label">&nbsp;</label><span class="bootstrap-switch-handle-off bootstrap-switch-default">OFF</span><input type="checkbox" data-toggle="switch"></div></div>
     </div>
-</div>
-
-<div class="row-fluid clearfix">
-	<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
-        <div class="share mrl">
-            <ul>
-                <li ng-repeat="setting in settings">
-                    <label class="share-label" for="share-toggle2">{{setting.name}}({{setting.enabled}})
-                    <br /><small>{{setting.shortDescription}}</small>
-                    </label>
-                    <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-animate" ng-click="toggleSetting($index)" ng-class="{'bootstrap-switch-on': setting.enabled, 'bootstrap-switch-off': !setting.enabled}"><div class="bootstrap-switch-container"><span class="bootstrap-switch-handle-on bootstrap-switch-primary">ON</span><label class="bootstrap-switch-label">&nbsp;</label><span class="bootstrap-switch-handle-off bootstrap-switch-default">OFF</span><input type="checkbox" data-toggle="switch"></div></div>
-                </li>
-                <!--<li>
-                    <label class="share-label" for="share-toggle4">Twitter</label>
-                    <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-animate"><div class="bootstrap-switch-container"><span class="bootstrap-switch-handle-on bootstrap-switch-primary">ON</span><label class="bootstrap-switch-label">&nbsp;</label><span class="bootstrap-switch-handle-off bootstrap-switch-default">OFF</span><input type="checkbox" checked="" data-toggle="switch"></div></div>
-                </li>
-                <li>
-                    <label class="share-label" for="share-toggle6">Pinterest</label>
-                    <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-animate"><div class="bootstrap-switch-container"><span class="bootstrap-switch-handle-on bootstrap-switch-primary">ON</span><label class="bootstrap-switch-label">&nbsp;</label><span class="bootstrap-switch-handle-off bootstrap-switch-default">OFF</span><input type="checkbox" data-toggle="switch"></div></div>
-                </li>-->
-            </ul>
-        </div>
-	</div>
 </div>
