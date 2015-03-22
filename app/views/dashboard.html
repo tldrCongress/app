@@ -4,6 +4,26 @@
 	        <img width="100%" class="" ng-class="" ng-src="/images/profilePic{{rep.firstName}}{{rep.lastName}}.jpg" />
 		</div>
         <p>{{rep.position}} {{rep.firstName}} {{rep.lastName}}</p>
-        <p>{{rep.stateFull}}</p>
+        <p><img width="32" ng-src="/images/state-icons/{{rep.state}}.png" />{{rep.stateFull}}</p>
 	</div>
+</div>
+
+<div class="row well">
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+    	<div class="lead">67%</div>
+	</div>
+	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-center">
+        <div class="progress">
+            <div class="progress-bar" style="width: 45%;"></div>
+		</div>
+	</div>
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+        <div><i class="glyphicon glyphicon-chevron-up"></i></div>
+    </div>
+</div>
+
+<div class="row" ng-repeat="vote in votes">
+	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+		
+    </div>
 </div>

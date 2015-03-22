@@ -10,12 +10,18 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <form>
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="text" class="form-control" placeholder="enter your email" name="email" />
+                <input type="text" class="form-control input-lg" placeholder="enter your email" name="email" />
             </div>
+
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="zip code" name="zip" />
+                <div class="input-group">
+                    <input type="text" class="form-control input-lg" placeholder="zip code" name="zip" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><img src="/images/locationArrow.png" /></button>
+                    </span>
+                </div>
             </div>
+            
             <button type="button" class="btn btn-primary btn-lg btn-block">Let's Go!</button>
         </form>
 	</div>
