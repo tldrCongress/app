@@ -1,18 +1,88 @@
 [
 	{
-		"name" : "Environment",
-		"support" : 1
+		"name" : "I Want...",
+		"data" : [
+			{
+				"name" : "universal health care",
+				"support" : 0
+			},
+			{
+				"name" : "legal medical marijuana",
+				"support" : 0
+			},
+			{
+				"name" : "gun control",
+				"support" : 0
+			},
+			{
+				"name" : "right to bear arms",
+				"support" : 0
+			},
+			{
+				"name" : "more prisons",
+				"support" : 0
+			},
+			{
+				"name" : "penal reform",
+				"support" : 0
+			},
+			{
+				"name" : "fair taxation",
+				"support" : 0
+			},
+			{
+				"name" : "no more taxes",
+				"support" : 0
+			},
+			{
+				"name" : "closed borders",
+				"support" : 0
+			},
+			{
+				"name" : "immigration control",
+				"support" : 0
+			},
+			{
+				"name" : "government transparency",
+				"support" : 0
+			},
+			{
+				"name" : "higher minimum wage",
+				"support" : 0
+			}
+		]
 	},
 	{
-		"name" : "Health",
-		"support" : 1
-	},
-	{
-		"name" : "Pro Life",
-		"support" : 0
-	},
-	{
-		"name" : "Pro Choice",
-		"support" : 0
+		"name" : "I Care About…",
+		"data" : [
+			{
+				"name" : "equity",
+				"support" : 0
+			},
+			{
+				"name" : "the environment",
+				"support" : 0
+			},
+			{
+				"name" : "access to education",
+				"support" : 0
+			},
+			{
+				"name" : "human trafficking",
+				"support" : 0
+			},
+			{
+				"name" : "climate change",
+				"support" : 0
+			},
+			{
+				"name" : "America’s competitive advantage",
+				"support" : 0
+			},
+			{
+				"name" : "unemployment rate",
+				"support" : 0
+			}
+		]
 	}
 ]
