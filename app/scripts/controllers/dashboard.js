@@ -14,6 +14,7 @@ app.controller('DashboardCtrl', function ($scope, $http) {
 	// Load the json data for intersts
 	$http.get('/data/profile.json')
 		.success(function(data) {
+			console.log(data);
 			$scope.rep = data;
 		})
 		.error(function(data, status, error, config){
