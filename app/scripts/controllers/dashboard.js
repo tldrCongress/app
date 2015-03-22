@@ -9,8 +9,12 @@
  */
 app.controller('DashboardCtrl', function ($scope, $http) {
 
+	// Initialize these objects
 	$scope.rep = {};
 	$scope.votes = {};
+
+	$scope.score = 67; // (int) Percentage matching
+	$scope.direction = 1; //1 = improving score, -1 decreasing score, 0 = neutral
 
 	// Load the json data for intersts
 	$http.get('/data/profile.json')
@@ -25,6 +29,7 @@ app.controller('DashboardCtrl', function ($scope, $http) {
 	// Load the voting record
 	$http.get('/data/record.json')
 		.success(function(d) {
+			console.log(d);
 			$scope.votes = d;
 		})
 		.error(function(data, status, error, config){
