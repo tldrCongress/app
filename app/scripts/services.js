@@ -14,7 +14,7 @@ angular.module('hack4CongressApp.services', ['firebase'])
   return syncObject;
 })
 .factory('Voter', function($firebase, hack4CongressFirebase) {
-  var voterRoot = hack4CongressFirebase.child("Voters");
+  var voterRoot = hack4CongressFirebase.child("voters");
   return {
     all: function() {
       var fbVoters = $firebase(voterRoot);
@@ -36,7 +36,7 @@ angular.module('hack4CongressApp.services', ['firebase'])
   };
 })
 .factory('VoterInterests', function($firebase, hack4CongressFirebase) {
-  var voterInterestsRoot = hack4CongressFirebase.child("VoterInterests");
+  var voterInterestsRoot = hack4CongressFirebase.child("voterInterests");
   return {
     save: function(vid, interests) {
       $firebase(voterInterestsRoot).$set(vid, {"interests": interests});
@@ -49,7 +49,7 @@ angular.module('hack4CongressApp.services', ['firebase'])
   }
 })
 .factory('Interests', function($firebase, hack4CongressFirebase) {
-  var interestsRoot = hack4CongressFirebase.child("Interests");
+  var interestsRoot = hack4CongressFirebase.child("interests");
   return {
     get: function() {
       var interests = $firebase(interestsRoot);
