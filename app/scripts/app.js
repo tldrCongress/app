@@ -19,8 +19,8 @@ var app = angular.module('hack4CongressApp', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/register.html',
+        controller: 'RegisterCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

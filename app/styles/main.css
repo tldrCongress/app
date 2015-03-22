@@ -28,6 +28,8 @@ body {
   padding-bottom: 19px;
 }
 
+.clickable:hover { cursor:pointer; }
+
 .uppercase { text-transform: uppercase; }
 .giant { font-size: 46px; }
 

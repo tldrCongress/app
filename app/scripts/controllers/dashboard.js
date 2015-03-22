@@ -7,7 +7,7 @@
  * # DashboardCtrl
  * Controller of the hack4CongressApp
  */
-app.controller('DashboardCtrl', function ($scope, $http) {
+app.controller('DashboardCtrl', function ($scope, $http, $location) {
 
 	// Initialize these objects
 	$scope.rep = {};
@@ -15,6 +15,11 @@ app.controller('DashboardCtrl', function ($scope, $http) {
 
 	$scope.score = 67; // (int) Percentage matching
 	$scope.direction = 1; //1 = improving score, -1 decreasing score, 0 = neutral
+
+	$scope.goto = function(u)
+	{
+		window.open(u, '_blank');
+	}
 
 	// Load the json data for intersts
   $http.get('/data/profile.json')
