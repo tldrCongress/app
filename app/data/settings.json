@@ -3,6 +3,12 @@
 		"name" : "Weekly",
 		"description" : "",
 		"shortDescription" : "Get weekly summaries of your representatives activities?",
-		"on" : 1
+		"enabled" : true
+	},
+	{
+		"name" : "Alerts",
+		"description" : "",
+		"shortDescription" : "Alert me on important legislative matters?",
+		"enabled" : false
 	}
 ]
