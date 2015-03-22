@@ -30,7 +30,15 @@
 
 <div class="row" ng-repeat="vote in votes">
 	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-		<p>{{vote.voteNumber}}</p>
-        <p>{{vote.title}}</p>
+		<table class="" width="100%">
+        	<tr>
+            	<td width="15%">{{vote.voteNumber}}</td>
+		        <td width="70%" align="left">
+                	<h6>{{vote.title}}</h6>
+                	<small style="color:#bfbfbf">{{vote.date | date:'dd MMM yyyy' || ''}}</small>
+                </td>
+                <td width="15%"><i class="fui-check"></i><i class="fui-cross"></i></td>
+            </tr>
+        </table>
     </div>
 </div>
