@@ -7,9 +7,15 @@
  * # MysettingsCtrl
  * Controller of the hack4CongressApp
  */
-app.controller('MysettingsCtrl', function ($scope) {
+app.controller('MysettingsCtrl', function ($scope, $http) {
 
     $scope.settings = {};
+
+	// Update the user's settings
+	$scope.toggleSetting = function(i)
+	{
+		$scope.settings[i].enabled = !$scope.settings[i].enabled;
+	}
 
 	// Load the user's settings; d = data
 	$http.get('/data/settings.json')
