@@ -32,13 +32,19 @@
 	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 		<table class="" width="100%">
         	<tr>
-            	<td width="15%">{{voteData.vote.number}}</td>
+            	<td width="15%">
+                	<div style="position:absolute;top:14px;left:18px;" class="light">{{voteData.vote.number}}</div>
+				</td>
 		        <td width="70%" align="left">
                 	<h6>{{voteData.vote.question}}</h6>
-                	<small style="color:#bfbfbf">{{voteData.vote.created | date:'EEEE, MMM dd, yyyy - h:mm a' || ''}}</small>
+                	<small style="color:#bfbfbf">{{voteData.vote.created | date:'dd MMM yyyy (h:mm a)' || ''}}</small>
                 </td>
                 <!-- {{voteData.option.key == '+'}} -->
-                <td width="15%"><i ng-hide="voteData.option.key == '-'" class="fui-check"></i><i class="fui-cross" ng-hide"voteData.option.key == '+'"></i></td>
+                <td width="15%">
+                	<i ng-cloak ng-hide="voteData.option.key != '+'" class="fui-check lead green"></i>
+                	<i class="fui-cross lead red" ng-cloak ng-hide="voteData.option.key != '-'"></i>
+                    <strong ng-cloak ng-hide="voteData.option.key != '0'" class="lead">&ndash;</strong>
+				</td>
             </tr>
         </table>
     </div>
