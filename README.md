@@ -6,3 +6,7 @@ It closes the gap between voters, their elected officials, and the issues that t
 App scaffolded with yeoman with Angular and Bootstrap.
 
 Data files in app/data.
+
+##Quick Launch Development Environment
+
+A .command file (Mac) is available to quick-start a local server for development: StartDevServer.command
