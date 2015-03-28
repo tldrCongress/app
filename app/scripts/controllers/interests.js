@@ -26,16 +26,24 @@ app.controller('InterestsCtrl', ["$scope", "Interests", 'dataShare', '$firebaseA
             var urlVoterInterests = 'https://blistering-inferno-7388.firebaseio.com/voterInterests/' + voterId;
             var refVoterInterests = new Firebase(urlVoterInterests);
             var voterInterests = $firebaseArray(refVoterInterests);
-            console.log(voterInterests.length)
             console.log('voterInterests', voterInterests)
             
-            // populate it with generic interests if this is a new user
-            if(voterInterests.length == 0) {
-                $scope.genericInterests = Interests;
-                $scope.genericInterests.forEach(function(interest) {
-                    voterInterests.$add(interest);
+            // populate it with generic interests ONLY if this is a new user
+            refVoterInterests.once('value', function(snapshot) {
+                var count = 0;
+                snapshot.forEach(function(childSnapshot) {
+                    count++;
                 });
-            }
+                console.log('count', count)
+                console.log('voterId', voterId)
+                if(count == 0) {
+                    console.log('executing this code')
+                    $scope.genericInterests = Interests;
+                    $scope.genericInterests.forEach(function(interest) {
+                        voterInterests.$add(interest);
+                    });
+                }
+            });
             
             $scope.interests = voterInterests;
             // Updates the user's interest settings, i = interest number in array
