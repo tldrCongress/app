@@ -7,11 +7,9 @@
  * # InterestCtrl
  * Controller of the hack4CongressApp
  */
-app.controller('InterestsCtrl', function ($scope, $http, $firebase, Interests, VoterInterests, Voter ) {
+app.controller('InterestsCtrl', function ($scope, $http ) {
 
-    var vid = 'v001'; // HARD CODED FOR NOW
-    $scope.voter = Voter.get(vid);
-    $scope.interests = Interests.get();
+
 
     // TODO: GET RID OF THIS
     // Load the json data for intersts
@@ -24,10 +22,10 @@ app.controller('InterestsCtrl', function ($scope, $http, $firebase, Interests, V
      });
 
     // Updates the user's interest settings, i = interest number in array
-    $scope.toggleInterest = function(i)
+    $scope.toggleInterest = function(i,j)
     {
-        $scope.interests[i].support = !$scope.interests[i].support;
-        VoterInterests.save(vid, $scope.interests);
+        $scope.interests[i].data[j].support = !$scope.interests[i].data[j].support;
+        //VoterInterests.save(vid, $scope.interests);
     }
 
 });
