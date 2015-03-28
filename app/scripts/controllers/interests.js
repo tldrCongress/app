@@ -7,25 +7,24 @@
  * # InterestCtrl
  * Controller of the hack4CongressApp
  */
-app.controller('InterestsCtrl', function ($scope, $http ) {
 
-
-
-    // TODO: GET RID OF THIS
-    // Load the json data for intersts
-    $http.get('/data/interests.json')
-        .success(function(data) {
-            $scope.interests = data;
-        })
-        .error(function(data, status, error, config){
-            $scope.interests = [{heading:"Error",description:"Could not load json   data"}];
-     });
-
-    // Updates the user's interest settings, i = interest number in array
-    $scope.toggleInterest = function(i,j)
-    {
-        $scope.interests[i].data[j].support = !$scope.interests[i].data[j].support;
-        //VoterInterests.save(vid, $scope.interests);
+app.factory('Interests', ['$firebaseArray',
+    function($firebaseArray) {
+        var url = 'https://blistering-inferno-7388.firebaseio.com/interests';
+        var ref = new Firebase(url);
+        return $firebaseArray(ref);
     }
-
-});
+])
+app.controller('InterestsCtrl', ["$scope", "Interests", 
+    function($scope, Interests) {
+        Interests.$loaded().then(function() {
+            $scope.interests = Interests;
+            // Updates the user's interest settings, i = interest number in array
+            $scope.toggleInterest = function(i,j)
+            {
+                $scope.interests[i].data[j].support = !$scope.interests[i].data[j].support;
+                $scope.interests.$save(i)
+            }
+        })
+    }
+]);

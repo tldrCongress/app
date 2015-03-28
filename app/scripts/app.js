@@ -15,6 +15,7 @@ var app = angular.module('hack4CongressApp', [
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'firebase'
   ])
   .config(function ($routeProvider) {
     $routeProvider

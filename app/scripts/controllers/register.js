@@ -7,33 +7,45 @@
  * # RegisterCtrl
  * Controller of the hack4CongressApp
  */
-app.controller('RegisterCtrl', ['$scope', '$http', function ($scope, $http) {
+app.factory('Voter', ['$firebaseObject',
+    function($firebaseObject) {
+        var randomId = Math.round(Math.random() * 100000000);
+        var url = 'https://blistering-inferno-7388.firebaseio.com/voters/' + randomId;
+        var ref = new Firebase(url);
+        return $firebaseObject(ref);
+    }
+])
+app.controller('RegisterCtrl', ['$scope', '$location', '$http', 'Voter',
+    function ($scope, $location, $http, Voter) {
+        $scope.email = '';
+        $scope.zip = '';
+        $scope.profile = Voter;
 
-	$scope.email = '';
-	$scope.zip = '';
+        // Attempt to get the user's zip code
+        $scope.getUserZip = function()
+        {
+            window.navigator.geolocation.getCurrentPosition(function(pos){
+                console.log(pos);
+                $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+pos.coords.latitude+','+pos.coords.longitude+'&sensor=true').then(function(res){
+                    console.log(res.data.results[0].formatted_address);
+                    //$zipcode = preg_match("/\b[A-Z]{2}\s+\d{5}(-\d{4})?\b/", $address, $matches);
+                    var myRe = /\b\d{5}(-\d{4})?\b/;
+                    var matches = myRe.exec(res.data.results[0].formatted_address);
+                    $scope.zip = matches[0];
+                });
+            })
+        }
 
-	// Attempt to get the user's zip code
-	$scope.getUserZip = function()
-	{
-		window.navigator.geolocation.getCurrentPosition(function(pos){
-			console.log(pos);
-			$http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+pos.coords.latitude+','+pos.coords.longitude+'&sensor=true').then(function(res){
-				console.log(res.data.results[0].formatted_address);
-				//$zipcode = preg_match("/\b[A-Z]{2}\s+\d{5}(-\d{4})?\b/", $address, $matches);
-				var myRe = /\b\d{5}(-\d{4})?\b/;
-				var matches = myRe.exec(res.data.results[0].formatted_address);
-    			$scope.zip = matches[0];
-			});
-		})
-	}
-
-	// Registers the user (via email)
-   /*$scope.register = function(){
-    	// create a voter_id that's v suffixed with the current timestamp
-    	var vid = 'v' + new Date().getTime().toString();
-    	var email = $("input[name=email]").val();
-    	var zip = $("input[name=zip]").val();
-		var vid = Voter.create(vid, email, zip);
-	}*/
-
-}]);
+        // create the user in Firebase
+        $scope.saveUser = function()
+        {
+            $scope.profile.email = $scope.email;
+            $scope.profile.zip = $scope.zip;
+            $scope.profile.$save().then(function() {
+                $location.path('interests')
+              }).catch(function(error) {
+                alert('Oh no! Something went wrong!');
+              });
+        }
+    }
+]);
