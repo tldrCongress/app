@@ -10,7 +10,7 @@
 app.controller('MysettingsCtrl', function ($scope, $http, $location) {
 
     $scope.settings = {};
-	$scope.staffers = ["stevenschlotterbeck@gmail.com","otherperson@site.gov"];
+	$scope.staffers = ["stevenschlotterbeck@gmail.com","heidi@site.gov"];
 	$scope.newStaffer = '';
 
 	$scope.location = $location.path();
