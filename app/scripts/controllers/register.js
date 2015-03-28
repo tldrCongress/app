@@ -7,19 +7,23 @@
  * # RegisterCtrl
  * Controller of the hack4CongressApp
  */
-app.factory('Voter', ['$firebaseObject',
-    function($firebaseObject) {
-        var randomId = Math.round(Math.random() * 100000000);
-        var url = 'https://blistering-inferno-7388.firebaseio.com/voters/' + randomId;
+app.factory('Voter', ['$firebaseObject', 'dataShare',
+    function($firebaseObject, dataShare) {
+        if (dataShare.voterId == undefined) {
+            var voterId = Math.round(Math.random() * 100000000);
+        } else {
+            var voterId = dataShare.voterId;
+        }
+        var url = 'https://blistering-inferno-7388.firebaseio.com/voters/' + voterId;
         var ref = new Firebase(url);
         return $firebaseObject(ref);
     }
 ])
 app.controller('RegisterCtrl', ['$scope', '$location', '$http', 'Voter', 'dataShare',
     function ($scope, $location, $http, Voter, dataShare) {
-        $scope.email = '';
-        $scope.zip = '';
         $scope.profile = Voter;
+        $scope.email = Voter.email;
+        $scope.zip = Voter.zip;
 
         // Attempt to get the user's zip code
         $scope.getUserZip = function()
