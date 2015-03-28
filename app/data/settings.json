@@ -4,6 +4,7 @@
 		"icon" : "fui-bookmark",
 		"description" : "",
 		"shortDescription" : "Get weekly summaries of your representatives activities?",
+		"default" : true,
 		"enabled" : true
 	},
 	{
@@ -11,6 +12,15 @@
 		"icon" : "fui-chat",
 		"description" : "",
 		"shortDescription" : "Alert me on important legislative matters?",
+		"default" : true,
 		"enabled" : false
+	},
+	{
+		"name" : "My Visibility",
+		"icon" : "fui-eye",
+		"description" : "",
+		"shortDescription" : "Make my profile visible to my representatives.",
+		"default" : true,
+		"enabled" : true
 	}
 ]

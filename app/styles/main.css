@@ -1,6 +1,7 @@
 @import url('register.css');
 @import url('interests.css');
 @import url('dashboard.css');
+@import url('nav.css');
 
 /* Space out content a bit */
 body {
@@ -12,13 +13,13 @@ body {
 .header,
 .marketing,
 .footer {
-  padding-left: 15px;
-  padding-right: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 /* Custom page header */
 .header {
-  border-bottom: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
 }
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
@@ -27,6 +28,21 @@ body {
   line-height: 40px;
   padding-bottom: 19px;
 }
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.loading{display:block;clear:both;width:100%;margin:0;padding:18px 0;height:64px;background:transparent url(/images/loadingGif64.gif) center center no-repeat;}
+.loading32{background-image: url(/images/loadingGif32.gif)}
+.loading24{background-image: url(/images/loadingGif24.gif)}
+.loading48.light{background-image: url(/images/loadingGifLight48.gif)}
+.loading24.light{background-image: url(/images/loadingGifLight24.gif)}
 
 .clickable:hover { cursor:pointer; }
 

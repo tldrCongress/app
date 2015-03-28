@@ -7,9 +7,9 @@
  * # InterestCtrl
  * Controller of the hack4CongressApp
  */
-app.controller('InterestsCtrl', function ($scope, $http ) {
+app.controller('InterestsCtrl', function ($scope, $http, $location ) {
 
-
+	$scope.location = $location.path();
 
     // TODO: GET RID OF THIS
     // Load the json data for intersts

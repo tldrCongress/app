@@ -1,3 +1,59 @@
 @charset "UTF-8";
 /* CSS Document */
 
+.profileControl{display:block;position:absolute;top:40%;font-size:63px;margin-top:-68px;font-weight:lighter;opacity:0.36;color:#bbb;}
+.profileControl.left{left:5%;}
+.profileControl.right{right:5%;}
+
+@media (max-width: 768px) { .profileControl.left{left:2px;}.profileControl.right{right:2px;} }
+
+.profileControl:hover{cursor:pointer;opacity:1;-webkit-transition:opacity .1s ease;}
+
+.carousel{ height:240px;}
+.carousel .profilePic{position:absolute;top:0;}
+.carousel .profilePic.active{left:50%;margin-left:-90px;}
+
+.carouselWrap {
+  margin: 0 auto;
+  width: 100%;
+  height: 240px;
+  position: relative;
+  perspective: 1000px;
+}
+
+.carousel {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top:36px;
+  transform-style: preserve-3d;
+  transition: transform 0.42s cubic-bezier(0.455, 0.03, 0.515, 0.955); /*Transition Easing: cubic-bezier(0.175, 0.885, 0.32, 1.275)*/
+}
+
+.carousel figure {
+	display: block;
+	position: absolute;
+	width: 180px;
+	height: 180px;
+	overflow:hidden;
+	margin:0 auto;
+}
+
+.carousel figure:nth-child(1) {
+  transform: rotateY(0deg) translateZ(240px);
+}
+.carousel figure:nth-child(2) {
+  transform: rotateY(60deg) translateZ(240px);
+}
+.carousel figure:nth-child(3) {
+  transform: rotateY(120deg) translateZ(240px);
+}
+.carousel figure:nth-child(4) {
+  transform: rotateY(180deg) translateZ(240px);
+}
+.carousel figure:nth-child(5) {
+  transform: rotateY(240deg) translateZ(240px);
+} 
+.carousel figure:nth-child(6) {
+  transform: rotateY(300deg) translateZ(240px);
+}

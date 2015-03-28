@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.nav li .icon {margin-right:7px;}
+
+.navbar-form.navbar-right { width:155px; }
+.navbar-form .input-group { width:100%; }
+
+@media (min-width: 768px) {
+
+	.searchMode .navbar-left{ opacity:0;width:0px;height:24px;overflow:hidden;-webkit-transition:all 0.4s ease-in; }
+	.searchMode .navbar-right{ width:90%;-webkit-transition:all 0.4s ease-in; float:right;}
+	.searchMode .navbar-right .form-group{ width:100%; }
+
+}

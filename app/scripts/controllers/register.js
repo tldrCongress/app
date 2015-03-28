@@ -11,6 +11,8 @@ app.controller('RegisterCtrl', ['$scope', '$http', function ($scope, $http) {
 
 	$scope.email = '';
 	$scope.zip = '';
+	$scope.signUpReady = false;
+
 
 	// Attempt to get the user's zip code
 	$scope.getUserZip = function()
@@ -26,6 +28,14 @@ app.controller('RegisterCtrl', ['$scope', '$http', function ($scope, $http) {
 			});
 		})
 	}
+
+
+	// Test if form is ready to be submitted
+	$scope.checkReady = function()
+	{
+		if($scope.email!='' && $scope.zip.length>4) { $scope.signUpReady=true; } else { $scope.signUpReady=false; }
+	}
+
 
 	// Registers the user (via email)
    /*$scope.register = function(){

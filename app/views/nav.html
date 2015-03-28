@@ -1,43 +1,47 @@
 <!--BEGIN: Desktop nav version -->
-<div class="visible-lg-block">
-
+<div class="header visible-lg-block">
+    <ul class="nav nav-pills pull-right">
+        <li><a ng-href="#/about">About</a></li>
+        <li><a ng-href="#/register">Register</a></li>
+        <li><a ng-href="#/interests">Interests</a></li>
+        <li><a ng-href="#/dashboard">Dashboard</a></li>
+        <li><a ng-href="#/mySettings">Settings</a></li>
+    </ul>
+    <h3 class="text-muted"><img class="" src="/images/logo256.png" alt="TL;DR Congress" width="64" height="64" /></h3>
 </div>
 <!--END: Desktop nav -->
 
 <!--BEGIN: Mobile/Tablet nav version -->
-<nav class="navbar navbar-inverse navbar-embossed hidden-lg" role="navigation">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-        <span class="sr-only">Toggle navigation</span>
-      </button>
-      <a class="navbar-brand" href="#">Flat UI</a>
+<nav class="navbar navbar-inverse navbar-embossed hidden-lg noselect" role="navigation" ng-class="{searchMode : searchMode}">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+			<span class="sr-only">menu</span>
+		</button>
+		<a class="navbar-brand" href="#">tl;dr</a>
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse-01">
-      <ul class="nav navbar-nav navbar-left">
-        <li><a href="#fakelink">Menu Item<span class="navbar-unread">1</span></a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Messages <b class="caret"></b></a>
-          <span class="dropdown-arrow"></span>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-        <li><a href="#fakelink">About Us</a></li>
-       </ul>
-       <form class="navbar-form navbar-right" action="#" role="search">
-        <div class="form-group">
-          <div class="input-group">
-            <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
-            <span class="input-group-btn">
-              <button type="submit" class="btn"><span class="fui-search"></span></button>
-            </span>
-          </div>
-        </div>
-      </form>
+        <ul class="nav navbar-nav navbar-left">
+            <li ng-class="{active : location == '/interests'}"><a ng-href="#/interests"><i class="icon fui-heart"></i> Interests</a></li>
+            <li ng-class="{active : location == '/dashboard'}"><a ng-href="#/dashboard"><i class="icon fui-list-large-thumbnails"></i> Dashboard</a></li>
+            <li class="dropdown">
+            <a href class="dropdown-toggle" data-toggle="dropdown"><i class="icon fui-gear"></i> Settings <b class="caret"></b></a>
+                <span class="dropdown-arrow"></span>
+                <ul class="dropdown-menu">
+					<li ng-class="{active : location == '/mySettings'}"><a ng-href="#/mySettings">My Settings</a></li>
+                    <li ng-class="{active : location == '/about'}"><a ng-href="#/about">Help</a></li>
+                </ul>
+            </li>
+        </ul>
+		<form class="navbar-form navbar-right" action="#" role="search">
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control" id="navbarInput-01" type="search" placeholder="Search" ng-focus="setSearching(true)" ng-blur="setSearching(false)">
+                    <span class="input-group-btn">
+						<button type="submit" class="btn"><span class="fui-search"></span></button>
+                    </span>
+                </div>
+            </div>
+		</form>
     </div><!-- /.navbar-collapse -->
 </nav>
 <!--END: Mobile/tablet nav -->

@@ -1,0 +1,20 @@
+[
+	{
+		"name" : "Dianne Feinstein",
+		"firstName" : "Dianne",
+		"lastName" : "Feinstein",
+		"id" : "300043"
+	},
+	{
+		"name" : "Nancy Pelosi",
+		"firstName" : "Nancy",
+		"lastName" : "Pelosi",
+		"id" : "400314"
+	},
+	{
+		"name" : "Barbara Boxer",
+		"firstName" : "Barbara",
+		"lastName" : "Boxer",
+		"id" : "300011"
+	}	
+]

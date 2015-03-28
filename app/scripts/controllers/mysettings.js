@@ -7,15 +7,24 @@
  * # MysettingsCtrl
  * Controller of the hack4CongressApp
  */
-app.controller('MysettingsCtrl', function ($scope, $http) {
+app.controller('MysettingsCtrl', function ($scope, $http, $location) {
 
     $scope.settings = {};
+	$scope.staffers = ["stevenschlotterbeck@gmail.com","otherperson@site.gov"];
+	$scope.newStaffer = '';
+
+	$scope.location = $location.path();
+
+	$scope.addStaffer = function(p) {
+		$scope.staffers.push(p);
+		$scope.newStaffer = '';
+    };
+	$scope.removeStaffer = function(i) {
+		if (i > -1) { $scope.staffers.splice(i, 1); }
+    };
 
 	// Update the user's settings
-	$scope.toggleSetting = function(i)
-	{
-		$scope.settings[i].enabled = !$scope.settings[i].enabled;
-	}
+	$scope.toggleSetting = function(i) { $scope.settings[i].enabled = !$scope.settings[i].enabled; }
 
 	// Load the user's settings; d = data
 	$http.get('/data/settings.json')
