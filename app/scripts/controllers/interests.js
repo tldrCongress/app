@@ -7,25 +7,50 @@
  * # InterestCtrl
  * Controller of the hack4CongressApp
  */
-app.controller('InterestsCtrl', function ($scope, $http, $location ) {
-
-	$scope.location = $location.path();
-
-    // TODO: GET RID OF THIS
-    // Load the json data for intersts
-    $http.get('/data/interests.json')
-        .success(function(data) {
-            $scope.interests = data;
-        })
-        .error(function(data, status, error, config){
-            $scope.interests = [{heading:"Error",description:"Could not load json   data"}];
-     });
-
-    // Updates the user's interest settings, i = interest number in array
-    $scope.toggleInterest = function(i,j)
-    {
-        $scope.interests[i].data[j].support = !$scope.interests[i].data[j].support;
-        //VoterInterests.save(vid, $scope.interests);
+app.factory('Interests', ['$firebaseArray', 'dataShare',
+    function($firebaseArray, dataShare) {
+        var voterId = dataShare.get().voterId;
+        var urlInterests = 'https://blistering-inferno-7388.firebaseio.com/interests';
+        var refInterests = new Firebase(urlInterests);
+        var genericInterests = $firebaseArray(refInterests);
+        
+        return genericInterests;
+        
     }
-
-});
+])
+app.controller('InterestsCtrl', ["$scope", "Interests", 'dataShare', '$firebaseArray',
+    function($scope, Interests, dataShare, $firebaseArray) {
+        Interests.$loaded().then(function() {
+            var voterId = dataShare.get().voterId;
+            var urlVoterInterests = 'https://blistering-inferno-7388.firebaseio.com/voterInterests/' + voterId;
+            var refVoterInterests = new Firebase(urlVoterInterests);
+            var voterInterests = $firebaseArray(refVoterInterests);
+            console.log('voterInterests', voterInterests)
+            
+            // populate it with generic interests ONLY if this is a new user
+            refVoterInterests.once('value', function(snapshot) {
+                var count = 0;
+                snapshot.forEach(function(childSnapshot) {
+                    count++;
+                });
+                console.log('count', count)
+                console.log('voterId', voterId)
+                if(count == 0) {
+                    console.log('executing this code')
+                    $scope.genericInterests = Interests;
+                    $scope.genericInterests.forEach(function(interest) {
+                        voterInterests.$add(interest);
+                    });
+                }
+            });
+            
+            $scope.interests = voterInterests;
+            // Updates the user's interest settings, i = interest number in array
+            $scope.toggleInterest = function(i,j)
+            {
+                $scope.interests[i].data[j].support = !$scope.interests[i].data[j].support;
+                $scope.interests.$save(i)
+            }
+        })
+    }
+]);
