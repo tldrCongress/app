@@ -6,10 +6,13 @@ var express = require('express')
   , methodOverride = require('method-override')
   , session = require('express-session')
   , util = require('util')
-  , MyUSAStrategy = require('passport-myusa').Strategy;
+  , MyUSAStrategy = require('passport-myusa').Strategy
+  , Firebase = require('firebase');
 
-var MYUSA_CLIENT_ID = process.env.MYUSA_CLIENT_ID || "--insert-myusa-client-id-here--"
-var MYUSA_CLIENT_SECRET = process.env.MYUSA_CLIENT_SECRET || "--insert-myusa-client-secret-here--";
+// New Firebase instance
+
+var MYUSA_CLIENT_ID = process.env.MYUSA_CLIENT_ID || ""
+var MYUSA_CLIENT_SECRET = process.env.MYUSA_CLIENT_SECRET || "";
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -58,6 +61,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(morgan('combined'));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(session({
@@ -73,6 +77,19 @@ app.use(express.static(__dirname + '/public'));
 
 
 app.get('/', function(req, res){
+  console.log(req.user);
+  // checking to make sure users exists
+  if(req.user) {
+    var jsonData = req.user._json;
+    // var randomId = Math.round(Math.random() * 100000000);
+    var fbNewUser = new Firebase('--INSERT FB--/voters/' + req.user.id);
+    fbNewUser.set({
+      email      : jsonData.email,
+      first_name : jsonData.first_name,
+      last_name  : jsonData.last_name,
+      profile    : jsonData.zip
+    });
+  }
   res.render('index', { user: req.user });
 });
 
@@ -91,7 +108,7 @@ app.get('/login', function(req, res){
 //   will redirect the user back to this application at /auth/myusa/callback
 //   or whatever you specified when you registered your myusa application
 app.get('/auth/myusa',
-  passport.authenticate('myusa', {scope: ['profile.email']}),
+  passport.authenticate('myusa', {scope: ['profile.email', 'profile.first_name', 'profile.last_name', 'profile.zip']}),
   function(req, res){
     // The request will be redirected to MyUSA for authentication, so this
     // function will not be called.

@@ -14,6 +14,7 @@
     "ejs": "*",
     "express": "*",
     "express-session": "^1.10.4",
+    "firebase": "^2.2.3",
     "method-override": "^2.3.2",
     "morgan": "^1.5.2",
     "passport": "*",
