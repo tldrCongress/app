@@ -46,4 +46,18 @@ var app = angular.module('hack4CongressApp', [
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .factory('dataShare', function() {
+     var savedData = {}
+     function set(data) {
+       savedData = data;
+     }
+     function get() {
+      return savedData;
+     }
+
+     return {
+      set: set,
+      get: get
+     }
   });
