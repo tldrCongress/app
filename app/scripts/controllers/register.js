@@ -21,9 +21,9 @@ app.factory('Voter', ['$firebaseObject', 'dataShare',
 ])
 app.controller('RegisterCtrl', ['$scope', '$location', '$http', 'Voter', 'dataShare',
     function ($scope, $location, $http, Voter, dataShare) {
+        $scope.email = '';
+        $scope.zip = '';
         $scope.profile = Voter;
-        $scope.email = Voter.email;
-        $scope.zip = Voter.zip;
 
     	$scope.signUpReady = false;
 
@@ -53,16 +53,15 @@ app.controller('RegisterCtrl', ['$scope', '$location', '$http', 'Voter', 'dataSh
         // create the user in Firebase
         $scope.saveUser = function()
         {
-            console.log($scope.profile)
             $scope.profile.email = $scope.email;
             $scope.profile.zip = $scope.zip;
             $scope.profile.$save().then(function() {
                 $location.path('interests');
                 var voterId = $scope.profile.$id;
                 dataShare.set({'voterId': voterId});
-              }).catch(function(error) {
+            }).catch(function(error) {
                 alert('Oh no! Something went wrong!');
-              });
+            });
         }
     }
 ]);
