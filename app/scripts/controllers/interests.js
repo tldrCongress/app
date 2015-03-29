@@ -58,12 +58,15 @@ app.controller('InterestsCtrl', ["$scope", "Interests", 'dataShare', '$firebaseA
                     if (callNow) func.apply(context, args);
                 };
             };
+            var saveInterests = debounce(function(i) {
+                $scope.interests.$save(i)
+            }, 30);
             $scope.interests = voterInterests;
             // Updates the user's interest settings, i = interest number in array
             $scope.toggleInterest = function(i,j)
             {
                 $scope.interests[i].data[j].support = !$scope.interests[i].data[j].support;
-                debounce(function() {$scope.interests.$save(i)}, 30);
+                saveInterests(i);
             }
         })
     }
