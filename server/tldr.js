@@ -11,8 +11,8 @@ var express = require('express')
 
 // New Firebase instance
 
-var MYUSA_CLIENT_ID = process.env.MYUSA_CLIENT_ID || ""
-var MYUSA_CLIENT_SECRET = process.env.MYUSA_CLIENT_SECRET || "";
+var MYUSA_CLIENT_ID = process.env.MYUSA_CLIENT_ID || "c2c669cfa2db3c91a8291f5e4f3dd539e12f5a28c708572f61681536237ffa86"
+var MYUSA_CLIENT_SECRET = process.env.MYUSA_CLIENT_SECRET || "6ddf53f113a45ac98ab2945ca80eba3b18b6f0ef8f49ba5915e8a6b0e08a87b3";
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -37,7 +37,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new MyUSAStrategy({
     clientID: MYUSA_CLIENT_ID,
     clientSecret: MYUSA_CLIENT_SECRET,
-    callbackURL: 'http://localhost:3000/auth/myusa/callback'
+    callbackURL: 'http://jimmyh.su:4242/auth/myusa/callback'
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
@@ -81,16 +81,25 @@ app.get('/', function(req, res){
   // checking to make sure users exists
   if(req.user) {
     var jsonData = req.user._json;
-    // var randomId = Math.round(Math.random() * 100000000);
-    var fbNewUser = new Firebase('--INSERT FB--/voters/' + req.user.id);
+    var fbNewUser = new Firebase('https://blistering-inferno-7388.firebaseio.com/voters/' + req.user.id);
     fbNewUser.set({
       email      : jsonData.email,
       first_name : jsonData.first_name,
       last_name  : jsonData.last_name,
+      address    : jsonData.address,
+      address2   : jsonData.address2,
+      city       : jsonData.city,
+      state      : jsonData.state,
       profile    : jsonData.zip
     });
+    res.redirect('https://blistering-inferno-7388.firebaseapp.com/#/dashboard');
+  } else {
+    // old stuff
+    // res.render('index', { user: req.user });
+
+    // send back some data
+    res.status(400).send('No data!');
   }
-  res.render('index', { user: req.user });
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
@@ -108,11 +117,23 @@ app.get('/login', function(req, res){
 //   will redirect the user back to this application at /auth/myusa/callback
 //   or whatever you specified when you registered your myusa application
 app.get('/auth/myusa',
-  passport.authenticate('myusa', {scope: ['profile.email', 'profile.first_name', 'profile.last_name', 'profile.zip']}),
+  passport.authenticate('myusa', {scope:
+  [
+    'profile.email',
+    'profile.first_name',
+    'profile.last_name',
+    'profile.address',
+    'profile.address2',
+    'profile.city',
+    'profile.state',
+    'profile.zip'
+  ]
+  }),
   function(req, res){
     // The request will be redirected to MyUSA for authentication, so this
     // function will not be called.
-  });
+  }
+);
 
 // GET /auth/myusa/callback
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -130,7 +151,7 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen(3000);
+app.listen(4242);
 
 
 // Simple route middleware to ensure user is authenticated.
