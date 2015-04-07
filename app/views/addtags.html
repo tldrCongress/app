@@ -1,0 +1,15 @@
+<div class="row-fluid clearfix">
+    <div class="tagsinput-primary">
+        <input name="tagsinput" class="tagsinput" data-role="tagsinput" value="School, Teacher, Colleague" style="display: none;">
+        <div class="bootstrap-tagsinput" style="border: 2px solid #bdc3c7;">
+            <span class="tag label label-info" ng-repeat="person in staffers">{{person}}<span data-role="remove" ng-click="removeStaffer($index)"></span></span>
+
+            <form id="stafferListForm" name="stafferListForm" method="post" ng-submit="addStaffer(newStaffer);newStaffer='';">
+                <div class="form-group">
+                    <input type="text" class="form-control" style="height:42px;width:100% !important;" ng-model="newStaffer" placeholder="type a tag to add">
+                </div>
+                <input type="submit" style="display:none" />
+            </form>
+        </div>
+    </div>
+</div>

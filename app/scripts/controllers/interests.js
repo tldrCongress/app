@@ -25,7 +25,6 @@ app.controller('InterestsCtrl', ["$scope", "Interests", 'dataShare', '$firebaseA
             var urlVoterInterests = 'https://blistering-inferno-7388.firebaseio.com/voterInterests/' + voterId;
             var refVoterInterests = new Firebase(urlVoterInterests);
             var voterInterests = $firebaseArray(refVoterInterests);
-            console.log('voterInterests', voterInterests)
             
             // populate it with generic interests ONLY if this is a new user
             refVoterInterests.once('value', function(snapshot) {
@@ -33,10 +32,7 @@ app.controller('InterestsCtrl', ["$scope", "Interests", 'dataShare', '$firebaseA
                 snapshot.forEach(function(childSnapshot) {
                     count++;
                 });
-                console.log('count', count)
-                console.log('voterId', voterId)
                 if(count == 0) {
-                    console.log('executing this code')
                     $scope.genericInterests = Interests;
                     $scope.genericInterests.forEach(function(interest) {
                         voterInterests.$add(interest);
@@ -58,16 +54,18 @@ app.controller('InterestsCtrl', ["$scope", "Interests", 'dataShare', '$firebaseA
                     if (callNow) func.apply(context, args);
                 };
             };
-            var saveInterests = debounce(function(i) {
-                $scope.interests.$save(i)
-            }, 30);
-            $scope.interests = voterInterests;
-            // Updates the user's interest settings, i = interest number in array
-            $scope.toggleInterest = function(i,j)
-            {
-                $scope.interests[i].data[j].support = !$scope.interests[i].data[j].support;
-                saveInterests(i);
-            }
-        })
+            voterInterests.$loaded().then(function() {
+                var saveInterests = debounce(function(i) {
+                    $scope.interests.$save(i)
+                }, 500);
+                $scope.interests = voterInterests;
+                // Updates the user's interest settings, i = interest number in array
+                $scope.toggleInterest = function(i,j)
+                {
+                    $scope.interests[i].data[j].support = !$scope.interests[i].data[j].support;
+                    saveInterests(i);
+                }
+            });
+        });
     }
 ]);
