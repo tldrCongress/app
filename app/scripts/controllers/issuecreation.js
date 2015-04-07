@@ -7,58 +7,48 @@
  * # IssueCreationCtrl
  * Controller of the hack4CongressApp
  */
-app.factory('Voter', ['$firebaseObject', 'dataShare',
+app.factory('Events', ['$firebaseObject', 'dataShare',
     function($firebaseObject, dataShare) {
-        if (dataShare.voterId == undefined) {
-            var voterId = Math.round(Math.random() * 100000000);
+        if (dataShare.eventId == undefined) {
+            var eventId = Math.round(Math.random() * 100000000);
         } else {
-            var voterId = dataShare.voterId;
+            var eventId = dataShare.eventId;
         }
-        var url = 'https://blistering-inferno-7388.firebaseio.com/voters/' + voterId;
+        var url = 'https://blistering-inferno-7388.firebaseio.com/events/' + eventId;
         var ref = new Firebase(url);
         return $firebaseObject(ref);
     }
 ])
-app.controller('IssueCreationCtrl', ['$scope', '$location', '$http', 'Voter', 'dataShare',
-    function ($scope, $location, $http, Voter, dataShare) {
-        $scope.email = '';
-        $scope.zip = '';
-        $scope.profile = Voter;
+app.controller('IssueCreationCtrl', ['$scope', '$location', '$http', 'Events', 'dataShare',
+    function ($scope, $location, $http, Events, dataShare) {
+        $scope.title = '';
+        $scope.content = '';
+        $scope.interestTags = ["tag0","tag1"];
+        $scope.newTag = '';
+        $scope.comments = '';
+        $scope.newEvent = Events;
 
-    	$scope.signUpReady = false;
+        $scope.addTag = function(p) {
+            console.log('adding tag')
+            $scope.interestTags.push(p);
+            $scope.newTag = '';
+        };
+        $scope.removeTag = function(i) {
+            if (i > -1) { $scope.interestTags.splice(i, 1); }
+        };
 
-
-    	// Attempt to get the user's zip code
-    	$scope.getUserZip = function()
-    	{
-    		window.navigator.geolocation.getCurrentPosition(function(pos){
-    			console.log(pos);
-    			$http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+pos.coords.latitude+','+pos.coords.longitude+'&sensor=true').then(function(res){
-    				console.log(res.data.results[0].formatted_address);
-    				//$zipcode = preg_match("/\b[A-Z]{2}\s+\d{5}(-\d{4})?\b/", $address, $matches);
-    				var myRe = /\b\d{5}(-\d{4})?\b/;
-    				var matches = myRe.exec(res.data.results[0].formatted_address);
-        			$scope.zip = matches[0];
-    			});
-    		})
-    	}
-
-
-    	// Test if form is ready to be submitted
-    	$scope.checkReady = function()
-    	{
-    		if($scope.email!='' && $scope.zip.length>4) { $scope.signUpReady=true; } else { $scope.signUpReady=false; }
-    	}
-
-        // create the user in Firebase
-        $scope.saveUser = function()
+        // create the new issue in Firebase
+        $scope.saveEvent = function()
         {
-            $scope.profile.email = $scope.email;
-            $scope.profile.zip = $scope.zip;
-            $scope.profile.$save().then(function() {
-                $location.path('interests');
-                var voterId = $scope.profile.$id;
-                dataShare.set({'voterId': voterId});
+            $scope.newEvent.title = $scope.title;
+            $scope.newEvent.content = $scope.content;
+            $scope.newEvent.comments = $scope.comments;
+            $scope.newEvent.tags = $scope.interestTags;
+
+            $scope.newEvent.$save().then(function() {
+                var eventId = $scope.newEvent.$id;
+                dataShare.set({'eventId': eventId});
+                alert('Success!');
             }).catch(function(error) {
                 alert('Oh no! Something went wrong!');
             });
