@@ -23,7 +23,7 @@
                     <div class="bootstrap-tagsinput" style="border: 2px solid #bdc3c7;">
                         <span class="tag label label-info" ng-repeat="interestTag in interestTags">{{interestTag}}<span data-role="remove" ng-click="removeTag($index)"></span></span>
 
-                        <form id="tagsListForm" name="tagsListForm" method="post" ng-submit="addTag(newTag);newTag='';">
+                        <form id="tagsListForm" name="tagsListForm" method="post" ng-submit="addTag(newTag);newTag='';console.log('derp.js');">
                             <div class="form-group">
                                 <input type="text" class="form-control" style="height:42px;width:100% !important;" ng-model="newTag" placeholder="type a tag to add">
                             </div>

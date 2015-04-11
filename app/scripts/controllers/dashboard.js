@@ -61,12 +61,16 @@ app.controller('DashboardCtrl', function ($scope, $http, $location) {
 		.error(function(data, status, error, config){
 			$scope.repInfo = [{heading:"Error",description:"Could not load json   data"}];
 		});
-		
+
 		// Load their voting record
 		$scope.votes = {};
 		$http.get('https://www.govtrack.us/api/v2/vote_voter?person=300043&order_by=-created')
 		.success(function(v) {
 			$scope.votes = v.objects;
+      $scope.votes[0].tags = ['lol', 'jk', 'wtf'];
+      $scope.votes[1].tags = ['wtf'];
+      $scope.votes[2].tags = ['omg'];
+      $scope.votes[3].tags = ['jk'];
 			console.log($scope.votes);
 			console.log($scope.votes[0].option.key);
 		})
@@ -87,8 +91,8 @@ app.controller('DashboardCtrl', function ($scope, $http, $location) {
 
 	// Change the nav bar to search
 	$scope.setSearching = function(t) { $scope.searchMode=t;	};
-	
-	
+
+
 	// Carousel control functions
 	$scope.nextPerson = function(){ $scope.rotate('n'); }
 	$scope.prevPerson = function(){ $scope.rotate('p'); }
