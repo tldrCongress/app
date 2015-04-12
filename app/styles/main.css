@@ -5,8 +5,13 @@
 
 /* Space out content a bit */
 body {
-  padding-top: 20px;
+  /*padding-top: 0px;*/
   padding-bottom: 20px;
+}
+
+/* Custom page header */
+.navbar {
+  border-radius: 0px;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
