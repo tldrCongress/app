@@ -7,8 +7,8 @@
  * # IssueCreationCtrl
  * Controller of the hack4CongressApp
  */
-app.factory('Events', ['$firebaseObject', 'dataShare',
-    function($firebaseObject, dataShare) {
+app.factory('Events', ['$firebaseObject', 'dataShare', "$firebaseAuth",
+    function($firebaseObject, dataShare, $firebaseAuth) {
         if (dataShare.eventId == undefined) {
             var eventId = Math.round(Math.random() * 100000000);
         } else {
@@ -29,7 +29,7 @@ app.controller('IssueCreationCtrl', ['$scope', '$location', '$http', 'Events', '
         $scope.newEvent = Events;
 
         $scope.addTag = function(p) {
-            console.log('adding tag')
+            console.log('adding tag');
             $scope.interestTags.push(p);
             $scope.newTag = '';
         };
