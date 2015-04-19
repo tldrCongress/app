@@ -21,7 +21,7 @@
                 <div class="tagsinput-primary">
                     <input name="interestTags" class="tagsinput" data-role="interestTags" value="School, Teacher, Colleague" style="display: none;">
                     <div class="bootstrap-tagsinput" style="border: 2px solid #bdc3c7;">
-                        <span class="tag label label-info" ng-repeat="interestTag in interestTags">{{interestTag}}<span data-role="remove" ng-click="removeTag($index)"></span></span>
+                        <span class="tag label label-info" ng-repeat="interestTag in interestTags">{{interestTags}}<span data-role="remove" ng-click="removeTag($index)"></span></span>
 
                         <form id="tagsListForm" name="tagsListForm" method="post" ng-submit="addTag(newTag);newTag='';">
                             <div class="form-group">
