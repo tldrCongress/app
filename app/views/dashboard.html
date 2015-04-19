@@ -1,84 +1,68 @@
-<div ng-include="'/views/nav.html'"></div>
-
-<div class="row-fluid clearfix">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-    	<div id="officialCarousel" class="carouselWrap">
-            <div class="carousel">
-
-                <figure class="img-circle clickable active profilePic" ng-click="goto(rep.websites[$index])" ng-repeat="rep in myReps">
-                    <img width="100%" class="" ng-class="" ng-src="/images/profilePic{{rep.firstName}}{{rep.lastName}}.jpg" />
-                </figure>
-
-
-                <!--<figure class="img-circle clickable active profilePic" ng-click="goto(rep.websites[0])">
-                    <img width="100%" class="" ng-class="" ng-src="/images/profilePic{{myReps[0].firstName}}{{myReps[0].lastName}}.jpg" />
-                </figure>
-                <figure class="img-circle clickable active profilePic" ng-click="goto(rep.websites[0])">
-                    <img width="100%" class="" ng-class="" ng-src="/images/profilePic{{myReps[1].firstName}}{{myReps[1].lastName}}.jpg" />
-                </figure>
-                <figure class="img-circle clickable active profilePic" ng-click="goto(rep.websites[0])">
-                    <img width="100%" class="" ng-class="" ng-src="/images/profilePic{{myReps[2].firstName}}{{myReps[2].lastName}}.jpg" />
-                </figure>-->
-            </div>
-		</div>
-		<h6>{{repInfo.roles[0].title_long}} {{repInfo.firstname}} {{repInfo.lastname}}</h6>
-		<p class="uppercase"><img width="32" ng-src="/images/state-icons/{{rep.state}}.png" />&nbsp;{{rep.stateFull}}</p>
-        <a class="profileControl left" ng-click="prevPerson()"><i class="fui-arrow-left"></i></a>
-        <a class="profileControl right" ng-click="nextPerson()"><i class="fui-arrow-right"></i></a>
-	</div>
-</div>
-
+<!-- <div ng-include="'/views/nav.html'"></div> -->
 <!-- Hidden for now -->
 <!--<div class="row-fluid clearfix well">
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-    	<div class="lead giant" style="margin-bottom:0;">{{score}}%</div>
-	</div>
-	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-center">
+  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      <div class="lead giant" style="margin-bottom:0;">{{score}}%</div>
+  </div>
+  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-center">
         <div class="progress" style="margin-top:28px;">
             <div class="progress-bar" ng-style="{ 'width' : score+'%'}"></div>
-		</div>
-	</div>
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+    </div>
+  </div>
+  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
         <div style="margin-top:12px;"><i class="glyphicon glyphicon-chevron-up lead" style="margin-bottom:0;"></i></div>
     </div>
 </div>-->
 
+<div class="row-fluid clearfix loading loading32" ng-hide="data.$id === 'events'"></div>
+
+<select data-toggle="select" class="form-control select select-primary" ng-model="filterSelect">
+  <option value="lol">lol</option>
+  <option value="jk">jk</option>
+  <option value="omg">omg</option>
+  <option value="wtf">wtf</option>
+</select>
+
 <div class="row-fluid clearfix">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <span class="glyphicon glyphicon-option-horizontal"></span>
-    </div>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <span class="glyphicon glyphicon-option-horizontal"></span>
+  </div>
 </div>
 
 <div class="row-fluid clearfix">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <span class="label label-default" ng-repeat="interest in myInterests" ng-click="filterByInterests(interest.name)">{{interest.name}}</span>
-    </div>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <span class="label label-default" ng-repeat="interest in myInterests" ng-click="filterByInterests(interest.name)">{{interest.name}}</span>
+  </div>
 </div>
 
-<div class="row-fluid clearfix loading loading32" ng-hide="votes.length>0"></div>
+<div class="row-fluid clearfix" ng-repeat="(eventNumber, eventData) in data | filter:{tags: filterSelect} | orderBy:'created':reverse">
+  <div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 
-<div class="row-fluid clearfix" ng-repeat="voteData in votes">
-	<div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-		<table class="" width="100%">
-        	<tr>
-            	<td width="15%">
-                	<div style="position:absolute;top:14px;left:18px;" class="light">{{voteData.vote.number}}</div>
-				</td>
-		        <td width="70%" align="left">
-                	<h6><a ng-href="" target="_blank">{{voteData.vote.question}}<small></small></a></h6>
-                	<small style="color:#bfbfbf">{{voteData.vote.created | date:'dd MMM yyyy (h:mm a)' || ''}}</small>
-                    <div ng-cloak ng-show="voteData.vote.comment">
-                    	<img class="" style="width:64px;height:64px;float:left;margin-right:24px;" ng-src="/images/profilePic{{rep.firstName}}{{rep.lastName}}.jpg" />
-                        <div class="comment"><span>{{voteData.vote.comment}}</span></div>
-                    </div>
-                </td>
-                <!-- {{voteData.option.key == '+'}} -->
-                <td width="15%">
-                	<i ng-cloak ng-hide="voteData.option.key != '+'" class="fui-check lead green"></i>
-                	<i class="fui-cross lead red" ng-cloak ng-hide="voteData.option.key != '-'"></i>
-                    <strong class="glyphicon glyphicon-minus" ng-cloak ng-hide="voteData.option.key != '0'" class="lead"></strong>
-				</td>
-            </tr>
-        </table>
-    </div>
+    <table class="" width="100%">
+      <tr>
+
+        <td style="vertical-align:top;" width="15%">
+          <small style="color:#bfbfbf">{{eventData.created | date:'dd MMM yyyy (h:mm a)' || ''}}</small>
+          <!-- <div class="light">{{eventNumber}}</div> -->
+        </td>
+
+        <td width="70%" align="left">
+          <h6 style="margin-top:0px;"><a ng-href="" target="_blank">{{eventData.title}}</a></h6>
+          <p>{{eventData.content}}</p>
+          <div ng-cloak ng-show="eventData.comments">
+            <img class="" style="width:32px;height:32px;float:left;margin-right:10px;border-radius:32px;" ng-src="/images/profilePicBarbaraBoxer.jpg" />
+            <div class="comment"><span>{{eventData.comments}}</span></div>
+          </div>
+        </td>
+
+        <td width="15%">
+          <i ng-cloak ng-hide="voteData.option.key != '+'" class="fui-check lead green"></i>
+          <i class="fui-cross lead red" ng-cloak ng-hide="voteData.option.key != '-'"></i>
+          <strong class="glyphicon glyphicon-minus" ng-cloak ng-hide="voteData.option.key != '0'" class="lead"></strong>
+        </td>
+
+      </tr>
+    </table>
+
+  </div>
 </div>

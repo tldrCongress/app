@@ -1,4 +1,5 @@
-<div ng-include="'/views/nav.html'"></div>
+<!-- <div ng-include="'/views/nav.html'"></div> -->
+
 <div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     	<h1 class="title text-center"></h1>
@@ -23,7 +24,7 @@
                     <div class="bootstrap-tagsinput" style="border: 2px solid #bdc3c7;">
                         <span class="tag label label-info" ng-repeat="interestTag in interestTags">{{interestTags}}<span data-role="remove" ng-click="removeTag($index)"></span></span>
 
-                        <form id="tagsListForm" name="tagsListForm" method="post" ng-submit="addTag(newTag);newTag='';">
+                        <form id="tagsListForm" name="tagsListForm" method="post" ng-submit="addTag(newTag);newTag='';console.log('derp.js');">
                             <div class="form-group">
                                 <input type="text" class="form-control" style="height:42px;width:100% !important;" ng-model="newTag" placeholder="type a tag to add">
                             </div>

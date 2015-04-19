@@ -10,7 +10,8 @@
 app.factory('Events', ['$firebaseObject', 'dataShare', "$firebaseAuth",
     function($firebaseObject, dataShare, $firebaseAuth) {
         if (dataShare.eventId == undefined) {
-            var eventId = Math.round(Math.random() * 100000000);
+            var eventId = new Date().getTime(); //Math.round(Math.random() * 100000000);
+            // console.log(eventId);
         } else {
             var eventId = dataShare.eventId;
         }
@@ -42,6 +43,7 @@ app.controller('IssueCreationCtrl', ['$scope', '$location', '$http', 'Events', '
         {
             $scope.newEvent.title = $scope.title;
             $scope.newEvent.content = $scope.content;
+            $scope.newEvent.created = $scope.comments;
             $scope.newEvent.comments = $scope.comments;
             $scope.newEvent.tags = $scope.interestTags;
 

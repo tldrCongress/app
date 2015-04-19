@@ -1,10 +1,10 @@
-<div ng-include="'/views/nav.html'"></div>
+<!-- <div ng-include="'/views/nav.html'"></div> -->
 
 <div class="row">
 	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-xs-12 text-center">
     	<div ng-repeat="interestGroup in interests" ng-init="parentIndex = $index">
             <h1 class="title text-center">{{interestGroup.name}}</h1>
-    
+
             <button ng-repeat="interest in interestGroup.data" type="button" ng-name="{{interest.name}}" class="btn btn-primary btn-tile" ng-click="toggleInterest($parent.$index, $index)" ng-class="{active: interest.support}"><span ng-cloak ng-show="interest.support"><i class="fui-check"></i>&nbsp;</span><span ng-hide="interest.support">&nbsp;&nbsp;</span>{{interest.name}}&nbsp;&nbsp;</button>
 		</div>
 	</div>
