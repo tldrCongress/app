@@ -14,13 +14,12 @@ app.controller('DashboardCtrl', function ($scope, $http, $location, $firebaseObj
 	$scope.votes = {}; // Voting record of the current elected official
 	$scope.myReps = {}; // List of user's representatives (house, senate, etc...)
 	$scope.myInterests = {}; // Object that defines the user's interests
+	$scope.data = [];
 	$scope.curRep = 0;
 	$scope.searchMode = false;
 
 	$scope.location = $location.path();
 
-	$scope.score = 67; // (int) Percentage matching
-	$scope.direction = 1; // 1 = improving score, -1 decreasing score, 0 = neutral
     $scope.currdeg = 0; // Current position of carousel
 
 	$scope.goto = function(u)
@@ -67,12 +66,13 @@ app.controller('DashboardCtrl', function ($scope, $http, $location, $firebaseObj
 		$http.get('https://www.govtrack.us/api/v2/vote_voter?person=300043&order_by=-created')
 		.success(function(v) {
 			$scope.votes = v.objects;
-      $scope.votes[0].tags = ['lol', 'jk', 'wtf'];
-      $scope.votes[1].tags = ['wtf'];
-      $scope.votes[2].tags = ['omg'];
-      $scope.votes[3].tags = ['jk'];
-			console.log($scope.votes);
-			console.log($scope.votes[0].option.key);
+			var govtrackData = v.objects;
+			govtrackData.forEach(function(element) {
+				var voteData = element.vote;
+				voteData['voteValue'] = element.option.value;
+				voteData['comment'] = 'Hard-coded placeholder comment on why this representative voted this way. Hook up the voteID from govtrack to voteID comment inside firebase';
+				$scope.data.push(voteData);
+			});
 		})
 		.error(function(data, status, error, config){
 			$scope.votes = [{heading:"Error", description:"Could not load json data for votes"}];
@@ -80,18 +80,19 @@ app.controller('DashboardCtrl', function ($scope, $http, $location, $firebaseObj
 
 	}
 
-  var ref = new Firebase("https://blistering-inferno-7388.firebaseio.com/events");
-  $scope.data = $firebaseObject(ref);
-  console.log($scope.data);
+  // var ref = new Firebase("https://blistering-inferno-7388.firebaseio.com/events");
+  // $scope.data = $firebaseObject(ref);
+  // console.log($scope.data);
+  // console.log($scope.votes)
 
 	// Load the voting record
-	$http.get('/data/record.json')
-		.success(function(d) {
-			$scope.votes = d;
-		})
-		.error(function(data, status, error, config){
-			$scope.votes = [{heading:"Error",description:"Could not load json data"}];
-		});
+	// $http.get('/data/record.json')
+	// 	.success(function(d) {
+	// 		$scope.votes = d;
+	// 	})
+	// 	.error(function(data, status, error, config){
+	// 		$scope.votes = [{heading:"Error",description:"Could not load json data"}];
+	// 	});
 
 	// Change the nav bar to search
 	$scope.setSearching = function(t) { $scope.searchMode=t;	};
@@ -110,7 +111,7 @@ app.controller('DashboardCtrl', function ($scope, $http, $location, $firebaseObj
 			$scope.curRep--;
 		}
 		if($scope.curRep > $scope.myReps.length){ $scope.curRep=0; }
-		$scope.getRepData(); //Update the rep's info in the background
+		$scope.data = $scope.getRepData(); //Update the rep's info in the background
 
 		$('#officialCarousel .carousel').css({
 			"-webkit-transform": "rotateY("+$scope.currdeg+"deg)",
