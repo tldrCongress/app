@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div class="row-fluid clearfix" ng-repeat="(eventNumber, eventData) in data | filter:{tags: filterSelect} | orderBy:'created':reverse">
+<div class="row-fluid clearfix" ng-repeat="(eventNumber, eventData) in data | orderBy:'-created'">
   <div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 
     <table class="" width="100%">
@@ -25,9 +25,8 @@
 
         <td width="70%" align="left">
           <h6 style="margin-top:0px;"><a ng-href="" target="_blank">{{eventData.question}}</a></h6>
-          <p>{{eventData.content}}</p>
           <div ng-cloak ng-show="eventData.voteValue">
-            <div class="comment"><span><b>Vote:</b> {{eventData.voteValue}}</span></div>
+            <div class="comment"><span><strong>Vote:</strong> {{eventData.voteValue}}</span></div>
           </div>
           <div ng-cloak ng-show="eventData.comment">
             <img class="" style="width:32px;height:32px;float:left;margin-right:10px;border-radius:32px;" ng-src="/images/profilePicDianneFeinstein.jpg" />
