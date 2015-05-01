@@ -100,18 +100,7 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
                 $scope.comments[voteId] = {};
                 $scope.comments[voteId][personId] = $scope.data[index].comment;
                 $scope.comments.$save().then(function() {
-                    alert('Success!');
-                });
-            }
-
-            // create the new issue in Firebase
-            $scope.saveComment = function()
-            {
-                $scope.newComment.$save().then(function() {
-                    var eventId = $scope.newComment.$id;
-                    alert('Success!');
-                }).catch(function(error) {
-                    alert('Oh no! Something went wrong!');
+                    console.log('Success!');
                 });
             }
         });
