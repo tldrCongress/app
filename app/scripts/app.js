@@ -51,6 +51,10 @@ var app = angular.module('hack4CongressApp', [
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
       })
+      .when('/stafferDashboard', {
+        templateUrl: 'views/comments.html',
+        controller: 'CommentsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

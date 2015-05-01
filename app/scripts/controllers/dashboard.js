@@ -80,20 +80,6 @@ app.controller('DashboardCtrl', function ($scope, $http, $location, $firebaseObj
 
 	}
 
-  // var ref = new Firebase("https://blistering-inferno-7388.firebaseio.com/events");
-  // $scope.data = $firebaseObject(ref);
-  // console.log($scope.data);
-  // console.log($scope.votes)
-
-	// Load the voting record
-	// $http.get('/data/record.json')
-	// 	.success(function(d) {
-	// 		$scope.votes = d;
-	// 	})
-	// 	.error(function(data, status, error, config){
-	// 		$scope.votes = [{heading:"Error",description:"Could not load json data"}];
-	// 	});
-
 	// Change the nav bar to search
 	$scope.setSearching = function(t) { $scope.searchMode=t;	};
 
