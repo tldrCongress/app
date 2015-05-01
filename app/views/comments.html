@@ -30,20 +30,12 @@
               <div class="comment"><span>{{eventData.comment}}</span></div>
               <button ng-value="eventData" ng-click="editComment(eventNumber, eventData)" type="button" class="btn btn-primary btn-lg btn-block">Edit Comment</button>
             </div>
-            <div ng-show="eventData.editing">
-              <div class="form-group">
-              <textarea ng-model="eventData.comment" type="text-box" class="form-control" rows="3"></textarea>
-              </div>
-              <button ng-click="addComment(eventNumber, eventData)" type="button" class="btn btn-primary btn-lg btn-block">Update Comment</button>
-            </div>
           </div>
-          <div ng-cloak ng-hide="eventData.comment">
-            <!-- if there is no comment, show textbox and button to add -->
+          <div ng-show="eventData.editing">
               <div class="form-group">
-                  <textarea type="text-box" class="form-control" rows="3" placeholder="Add reason for vote" ng-model="comment" name="comment">
-                  </textarea>
+              <textarea ng-model="eventData.comment" type="text-box" class="form-control" placeholder="Add reason for vote" rows="3"></textarea>
               </div>
-              <button ng-click="addComment(eventNumber, eventData)" type="button" class="btn btn-primary btn-lg btn-block">Add Comment</button>
+              <button ng-click="addComment(eventNumber, eventData)" type="button" class="btn btn-primary btn-lg btn-block">Save</button>
             </div>
         </td>
 

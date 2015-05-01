@@ -72,8 +72,9 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
                         var voteData = element.vote;
                         var commentsOnIssue = $scope.comments[voteId];
                         voteData['comment'] = commentsOnIssue ? commentsOnIssue[personId] : '';
-                        voteData['editing'] = false;
+                        voteData['editing'] = commentsOnIssue ? false : true;
                         voteData['voteValue'] = element.option.value;
+                        voteData['personId'] = personId;
                         $scope.data.push(voteData);
                     });
                 })
@@ -92,8 +93,14 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
                 $scope.data[index].editing = true;
             }
             $scope.addComment = function(index, thisVote) {
+                var voteId = thisVote.id;
+                var personId = thisVote.personId;
                 $scope.data[index].editing = false;
-                console.log(thisVote);
+                $scope.comments[voteId] = {};
+                $scope.comments[voteId][personId] = $scope.data[index].comment;
+                $scope.comments.$save().then(function() {
+                    alert('Success!');
+                });
             }
 
             // create the new issue in Firebase
