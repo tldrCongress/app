@@ -15,9 +15,9 @@ app.factory('Interests', ['$firebaseArray', 'dataShare',
         var genericInterests = $firebaseArray(refInterests);
         
         return genericInterests;
-        
     }
 ])
+
 app.controller('InterestsCtrl', ["$scope", "Interests", 'dataShare', '$firebaseArray',
     function($scope, Interests, dataShare, $firebaseArray) {
         Interests.$loaded().then(function() {

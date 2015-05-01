@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('hack4CongressApp.services', ['firebase'])
 
 .factory('hack4CongressFirebase', function($firebase) {
