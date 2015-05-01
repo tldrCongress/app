@@ -20,18 +20,19 @@
         <td width="70%" align="left">
           <h6 style="margin-top:0px;"><a ng-href="" target="_blank">{{eventData.question}}</a></h6>
           <div ng-cloak ng-show="eventData.voteValue">
-            <div class="comment"><span><strong>Vote:</strong> {{eventData.voteValue}}</span></div>
+            <div><span><strong>Vote:</strong> {{eventData.voteValue}}</span></div>
           </div>
           
           <!-- if there is already a comment, allow editing -->
           <div ng-cloak ng-show="eventData.comment">
             <img class="" style="width:32px;height:32px;float:left;margin-right:10px;border-radius:32px;" ng-src="/images/profilePicDianneFeinstein.jpg" />
             <div ng-hide="eventData.editing">
-              <div class="comment"><span>{{eventData.comment}}</span></div>
+              <div class="comment">{{eventData.comment}}
               <button ng-value="eventData" ng-click="editComment(eventNumber, eventData)" type="button" class="btn btn-primary btn-lg btn-block">Edit Comment</button>
+              </div>
             </div>
           </div>
-          <div ng-show="eventData.editing">
+          <div ng-show="eventData.editing" class="comment comment-box">
               <div class="form-group">
               <textarea ng-model="eventData.comment" type="text-box" class="form-control" placeholder="Add reason for vote" rows="3"></textarea>
               </div>
