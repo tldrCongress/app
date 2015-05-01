@@ -1,9 +1,44 @@
 @charset "UTF-8";
 /* CSS Document */
 
+/* PROFILE */
+
+.profile.large{display: block; margin: 0 auto; border-radius:50%; width:256px; height:256px; overflow: hidden;}
+
+/* END: Profile*/
+
 .profileControl{display:block;position:absolute;top:40%;font-size:63px;margin-top:-68px;font-weight:lighter;opacity:0.36;color:#bbb;}
 .profileControl.left{left:5%;}
 .profileControl.right{right:5%;}
+
+.commentProfilePic { width:64px;height:64px;float:left;margin-right:14px; margin-top:-14px; border-radius:50%; float:right; }
+.voteAnswer.lead { font-size:64px; }
+
+.comment { text-align: left; background: #fff; padding:10px 14px; border-radius: 7px; border: solid 1px #f3f3f3; position: relative;  }
+.comment .btn {margin-top:18px; clear:both;}
+
+.comment:after, .comment:before {
+  right: 100%;
+  top: 32px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.comment:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-right-color: #fff;
+  border-width: 8px;
+  margin-top: -8px;
+}
+.comment:before {
+  border-color: rgba(243, 243, 243, 0);
+  border-right-color: #f3f3f3;
+  border-width: 9px;
+  margin-top: -9px;
+}
 
 @media (max-width: 768px) { .profileControl.left{left:2px;}.profileControl.right{right:2px;} }
 

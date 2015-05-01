@@ -18,10 +18,26 @@
 
         <td width="70%" align="left">
           <h6 style="margin-top:0px;"><a ng-href="" target="_blank">{{eventData.question}}</a></h6>
-          <div ng-cloak ng-show="eventData.voteValue">
-            <div><span><strong>Vote:</strong> {{eventData.voteValue}}</span></div>
-          </div>
           
+        </td>
+
+        <td width="15%" style="vertical-align:top;">
+          <i ng-cloak ng-hide="eventData.voteValue != 'Yea'" class="fui-check lead green"></i>
+            <i class="fui-cross lead red" ng-cloak ng-hide="eventData.voteValue != 'Nay'"></i>
+            <strong class="glyphicon glyphicon-minus" ng-cloak ng-hide="eventData.voteValue == 'Yea' || eventData.voteValue == 'Nay'" class="lead"></strong>
+
+            <div><span><strong>Vote:</strong> {{eventData.voteValue}}</span></div>
+        </td>
+
+      </tr>
+
+      <tr ng-cloak ng-show="eventData.comment">
+        <td colspan="1">
+            <img class="commentProfilePic" ng-src="/images/profilePicDianneFeinstein256.jpg" />
+        </td>
+        <td colspan="2">
+          
+
           <!-- if there is already a comment, allow editing -->
           <div ng-cloak ng-show="eventData.comment">
             <img class="" style="width:32px;height:32px;float:left;margin-right:10px;border-radius:32px;" ng-src="/images/profilePicDianneFeinstein.jpg" />
@@ -37,14 +53,8 @@
               </div>
               <button ng-click="addComment(eventNumber, eventData)" type="button" class="btn btn-primary btn-lg btn-block">Save</button>
             </div>
+          
         </td>
-
-        <td width="15%">
-          <i ng-cloak ng-hide="voteData.option.key != '+'" class="fui-check lead green"></i>
-          <i class="fui-cross lead red" ng-cloak ng-hide="voteData.option.key != '-'"></i>
-          <strong class="glyphicon glyphicon-minus" ng-cloak ng-hide="voteData.option.key != '0'" class="lead"></strong>
-        </td>
-
       </tr>
     </table>
 

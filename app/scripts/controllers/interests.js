@@ -57,7 +57,7 @@ app.controller('InterestsCtrl', ["$scope", "Interests", 'dataShare', '$firebaseA
             voterInterests.$loaded().then(function() {
                 var saveInterests = debounce(function(i) {
                     $scope.interests.$save(i)
-                }, 500);
+                }, 1500);
                 $scope.interests = voterInterests;
                 // Updates the user's interest settings, i = interest number in array
                 $scope.toggleInterest = function(i,j)

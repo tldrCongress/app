@@ -3,18 +3,24 @@
 		"name" : "Dianne Feinstein",
 		"firstName" : "Dianne",
 		"lastName" : "Feinstein",
+		"role" : "Senator",
+		"from" : "California",
 		"id" : "300043"
 	},
 	{
 		"name" : "Nancy Pelosi",
 		"firstName" : "Nancy",
 		"lastName" : "Pelosi",
+		"role" : "Representative",
+		"from" : "California",
 		"id" : "400314"
 	},
 	{
 		"name" : "Barbara Boxer",
 		"firstName" : "Barbara",
 		"lastName" : "Boxer",
+		"role" : "Senator",
+		"from" : "California",
 		"id" : "300011"
 	}	
 ]
