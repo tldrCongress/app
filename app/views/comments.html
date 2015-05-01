@@ -26,11 +26,26 @@
           <!-- if there is already a comment, allow editing -->
           <div ng-cloak ng-show="eventData.comment">
             <img class="" style="width:32px;height:32px;float:left;margin-right:10px;border-radius:32px;" ng-src="/images/profilePicDianneFeinstein.jpg" />
-            <div class="comment"><span>{{eventData.comment}}</span></div>
-            <button ng-click="editComment()" type="button" class="btn btn-primary btn-lg btn-block">Edit Comment</button>
+            <div ng-hide="eventData.editing">
+              <div class="comment"><span>{{eventData.comment}}</span></div>
+              <button ng-value="eventData" ng-click="editComment(eventNumber, eventData)" type="button" class="btn btn-primary btn-lg btn-block">Edit Comment</button>
+            </div>
+            <div ng-show="eventData.editing">
+              <div class="form-group">
+              <textarea ng-model="eventData.comment" type="text-box" class="form-control" rows="3"></textarea>
+              </div>
+              <button ng-click="addComment(eventNumber, eventData)" type="button" class="btn btn-primary btn-lg btn-block">Update Comment</button>
+            </div>
           </div>
           
           <!-- if there is no comment, show button to add -->
+          <div ng-cloak ng-show="eventData.addComment">
+            <div class="form-group">
+                <textarea type="text-box" class="form-control" rows="3" placeholder="Comments" ng-model="comments" name="comments">
+                </textarea>
+            </div>
+            <button ng-click="addComment()" type="button" class="btn btn-primary btn-lg btn-block">Create</button>
+          </div>
           <div ng-cloak ng-show="-eventData.comment">
             <button ng-click="addComment()" type="button" class="btn btn-primary btn-lg btn-block">Add Comment</button>
           </div>
