@@ -37,18 +37,14 @@
               <button ng-click="addComment(eventNumber, eventData)" type="button" class="btn btn-primary btn-lg btn-block">Update Comment</button>
             </div>
           </div>
-          
-          <!-- if there is no comment, show button to add -->
-          <div ng-cloak ng-show="eventData.addComment">
-            <div class="form-group">
-                <textarea type="text-box" class="form-control" rows="3" placeholder="Comments" ng-model="comments" name="comments">
-                </textarea>
+          <div ng-cloak ng-hide="eventData.comment">
+            <!-- if there is no comment, show textbox and button to add -->
+              <div class="form-group">
+                  <textarea type="text-box" class="form-control" rows="3" placeholder="Add reason for vote" ng-model="comment" name="comment">
+                  </textarea>
+              </div>
+              <button ng-click="addComment(eventNumber, eventData)" type="button" class="btn btn-primary btn-lg btn-block">Add Comment</button>
             </div>
-            <button ng-click="addComment()" type="button" class="btn btn-primary btn-lg btn-block">Create</button>
-          </div>
-          <div ng-cloak ng-show="-eventData.comment">
-            <button ng-click="addComment()" type="button" class="btn btn-primary btn-lg btn-block">Add Comment</button>
-          </div>
         </td>
 
         <td width="15%">

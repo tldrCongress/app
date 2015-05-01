@@ -70,16 +70,10 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
                         var personId = element.person.id;
                         var voteId = element.vote.id;
                         var voteData = element.vote;
-                        var comment = '';
                         var commentsOnIssue = $scope.comments[voteId];
-                        if( commentsOnIssue ) {
-                            comment = commentsOnIssue[personId];
-                        }
-                        console.log(comment)
-                        
-                        voteData['voteValue'] = element.option.value;
-                        voteData['comment'] = comment;
+                        voteData['comment'] = commentsOnIssue ? commentsOnIssue[personId] : '';
                         voteData['editing'] = false;
+                        voteData['voteValue'] = element.option.value;
                         $scope.data.push(voteData);
                     });
                 })
