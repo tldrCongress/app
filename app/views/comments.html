@@ -31,7 +31,7 @@
 
       </tr>
 
-      <tr ng-cloak ng-show="eventData.comment">
+      <tr ng-cloak>
         <td colspan="1">
             <img class="commentProfilePic" ng-src="/images/profilePicDianneFeinstein256.jpg" />
         </td>
@@ -52,7 +52,7 @@
               <textarea ng-model="eventData.comment" type="text-box" class="form-control" placeholder="Add reason for vote" rows="3"></textarea>
               </div>
               <button ng-click="addComment(eventNumber, eventData)" type="button" class="btn btn-primary btn-lg btn-block">Save</button>
-            </div>
+          </div>
           
         </td>
       </tr>
