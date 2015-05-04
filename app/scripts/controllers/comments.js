@@ -44,7 +44,7 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
                 $scope.getRepData();
             })
             .error(function(data, status, error, config){
-                $scope.rep = [{heading:"Error", description:"Could not load json   data"}];
+                $scope.rep = [{heading:"Error", description:"Could not load json data"}];
             });
             // json data directly from govtrack
             $scope.getRepData = function(){
@@ -56,12 +56,12 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
                     $scope.repInfo = d;
                 })
                 .error(function(data, status, error, config){
-                    $scope.repInfo = [{heading:"Error",description:"Could not load json   data"}];
+                    $scope.repInfo = [{heading:"Error",description:"Could not load json data"}];
                 });
 
                 // Load their voting record
                 $scope.votes = {};
-                $http.get('https://www.govtrack.us/api/v2/vote_voter?person=300043&order_by=-created')
+                $http.get('https://www.govtrack.us/api/v2/vote_voter?person=' +$scope.myReps[$scope.curRep].id +'&order_by=-created')
                 .success(function(v) {
                     $scope.votes = v.objects;
                     var govtrackData = v.objects;
