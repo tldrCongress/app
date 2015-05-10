@@ -77,6 +77,7 @@ app.controller('DashboardCtrl', ['$scope', '$location', '$http', 'StafferComment
                         voteData['editing'] = commentsOnIssue ? false : true;
                         voteData['voteValue'] = element.option.value;
                         voteData['personId'] = personId;
+                        voteData['url'] = element.vote.link;
                         $scope.data.push(voteData);
                     });
                     $scope.data.loaded = true;
