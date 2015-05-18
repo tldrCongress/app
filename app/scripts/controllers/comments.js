@@ -70,9 +70,18 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
                         var personId = element.person.id;
                         var voteId = element.vote.id;
                         var voteData = element.vote;
-                        var commentsOnIssue = $scope.comments[voteId];
-                        voteData['comment'] = commentsOnIssue ? commentsOnIssue[personId] : '';
-                        voteData['editing'] = commentsOnIssue ? false : true;
+                        if($scope.comments[voteId]) {
+                            var commentsOnIssue = $scope.comments[voteId][personId];
+                            var numRevisions = commentsOnIssue ? commentsOnIssue.length : 0;
+                        }
+                        if(numRevisions > 0) {
+                            voteData['comment'] = commentsOnIssue[0].comment;
+                            voteData['commentTime'] = commentsOnIssue[0].datetime;
+                            voteData['editing'] = false;
+                        } else {
+                            voteData['comment'] = '';
+                            voteData['editing'] = true;
+                        }
                         voteData['voteValue'] = element.option.value;
                         voteData['personId'] = personId;
                         $scope.data.push(voteData);
@@ -97,8 +106,17 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
                 var voteId = thisVote.id;
                 var personId = thisVote.personId;
                 $scope.data[index].editing = false;
-                $scope.comments[voteId] = {};
-                $scope.comments[voteId][personId] = $scope.data[index].comment;
+                if (!$scope.comments[voteId]) {
+                    $scope.comments[voteId] = {};
+                }
+                if (!$scope.comments[voteId][personId]) {
+                    $scope.comments[voteId][personId] = [];
+                }
+                // add the latest comment to the 
+                $scope.comments[voteId][personId].unshift({
+                    'comment': $scope.data[index].comment,
+                    'datetime': new Date().getTime(),
+                });
                 $scope.comments.$save().then(function() {
                     console.log('Success!');
                 });

@@ -42,7 +42,11 @@
           <div ng-cloak ng-show="eventData.comment">
             <img class="" style="width:32px;height:32px;float:left;margin-right:10px;border-radius:32px;" ng-src="/images/profilePicDianneFeinstein.jpg" />
             <div ng-hide="eventData.editing">
-              <div class="comment">{{eventData.comment}}
+              <div class="comment">
+                <p>{{eventData.comment}}</p>
+                <small style="color:#bfbfbf">
+                  {{eventData.commentTime | date:'dd MMM yyyy (h:mm a)' || ''}}
+                </small>
               <button ng-value="eventData" ng-click="editComment(eventNumber, eventData)" type="button" class="btn btn-primary btn-lg btn-block">Edit Comment</button>
               </div>
             </div>

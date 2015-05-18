@@ -72,10 +72,16 @@ app.controller('DashboardCtrl', ['$scope', '$location', '$http', 'StafferComment
                         var personId = element.person.id;
                         var voteId = element.vote.id;
                         var voteData = element.vote;
-                        var commentsOnIssue = $scope.comments[voteId];
-                        voteData['comment'] = commentsOnIssue ? commentsOnIssue[personId] : '';
-                        voteData['editing'] = commentsOnIssue ? false : true;
-                        voteData['voteValue'] = element.option.value;
+                        if($scope.comments[voteId]) {
+                            var commentsOnIssue = $scope.comments[voteId][personId];
+                            var numRevisions = commentsOnIssue ? commentsOnIssue.length : 0;
+                        }
+                        if(numRevisions > 0) {
+                            voteData['comment'] = commentsOnIssue[0].comment;
+                            voteData['commentTime'] = commentsOnIssue[0].datetime;
+                        } else {
+                            voteData['comment'] = '';
+                        }
                         voteData['personId'] = personId;
                         voteData['url'] = element.vote.link;
                         $scope.data.push(voteData);
