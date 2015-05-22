@@ -1,66 +1,66 @@
 <div class="row-fluid clearfix">
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-    <figure class="profile large"><img ng-cloak ng-src="/images/profilePic{{repInfo.firstname}}{{repInfo.lastname}}256.jpg" ng-title="{{repInfo.firstname}} {{repInfo.lastname}}" /></figure>
-    <h3 style="margin-top:8px;">{{repInfo.firstname}} {{repInfo.lastname}}<br />
-    <p>{{myReps[curRep].role}} from {{myReps[curRep].from}}</p></h3>
-  </div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+		<figure class="profile large"><img ng-cloak ng-src="/images/profilePic{{repInfo.firstname}}{{repInfo.lastname}}256.jpg" ng-title="{{repInfo.firstname}} {{repInfo.lastname}}" /></figure>
+		<h3 style="margin-top:8px;">{{repInfo.firstname}} {{repInfo.lastname}}<br />
+		<p>{{myReps[curRep].role}} from {{myReps[curRep].from}}</p></h3>
+	</div>
 </div>
 
 <div class="row-fluid clearfix">
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <span class="glyphicon glyphicon-option-horizontal"></span>
-  </div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<span class="glyphicon glyphicon-option-horizontal"></span>
+	</div>
 </div>
 
 <div class="row-fluid clearfix">
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <span class="label label-default" ng-repeat="interest in myInterests" ng-click="filterByInterests(interest.name)">{{interest.name}}</span>
-  </div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<span class="label label-default" ng-repeat="interest in myInterests" ng-click="filterByInterests(interest.name)">{{interest.name}}</span>
+	</div>
 </div>
 
 <div class="row-fluid clearfix loading loading64" ng-hide="data.loaded"></div>
 
 <div class="row-fluid clearfix" ng-repeat="(eventNumber, eventData) in data | orderBy:'-created'">
-  <div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+	<div class="tile col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 
-    <table class="" width="100%">
-      <tr>
+		<table class="" width="100%">
+			<tr>
 
-        <td style="vertical-align:top;" width="15%">
-          <small style="color:#bfbfbf">{{eventData.created | date:'dd MMM yyyy (h:mm a)' || ''}}</small>
-        </td>
+				<td style="vertical-align:top;" width="15%">
+					<small style="color:#bfbfbf">{{eventData.created | date:'dd MMM yyyy (h:mm a)' || ''}}</small>
+				</td>
 
-        <td width="70%" align="left">
-          <h6 style="margin-top:0px;"><a ng-href="{{eventData.url}}" target="_blank">{{eventData.question}}</a></h6>
-        </td>
+				<td width="70%" align="left">
+					<h6 style="margin-top:0px;"><a ng-href="{{eventData.url}}" target="_blank">{{eventData.question}}</a></h6>
+				</td>
 
-        <td style="vertical-align:top;" width="15%">
-          <div ng-cloak ng-show="eventData.voteValue" class="voteAnswer">
-            <i ng-cloak ng-hide="eventData.voteValue != 'Yea'" class="fui-check lead green"></i>
-            <i class="fui-cross lead red" ng-cloak ng-hide="eventData.voteValue != 'Nay'"></i>
-            <strong class="glyphicon glyphicon-minus" ng-cloak ng-hide="eventData.voteValue == 'Yea' || eventData.voteValue == 'Nay'" class="lead"></strong>
+				<td style="vertical-align:top;" width="15%">
+					<div ng-cloak ng-show="eventData.voteValue" class="voteAnswer">
+						<i ng-cloak ng-hide="eventData.voteValue != 'Yea'" class="fui-check lead green"></i>
+						<i class="fui-cross lead red" ng-cloak ng-hide="eventData.voteValue != 'Nay'"></i>
+						<strong class="glyphicon glyphicon-minus" ng-cloak ng-hide="eventData.voteValue == 'Yea' || eventData.voteValue == 'Nay'" class="lead"></strong>
 
-            <div><span><strong>Vote:</strong> {{eventData.voteValue}}</span></div>
-          </div>
-        </td>
+						<div><span><strong>Vote:</strong> {{eventData.voteValue}}</span></div>
+					</div>
+				</td>
 
-      </tr>
+			</tr>
 
-      <tr ng-cloak ng-show="eventData.comment">
-        <td colspan="1">
-            <img class="commentProfilePic" ng-src="/images/profilePicDianneFeinstein256.jpg" />
-        </td>
-        <td colspan="2">
-          <div class="comment">
-            <p>{{eventData.comment}}</p>
-            <small style="color:#bfbfbf">
-              {{eventData.commentTime | date:'dd MMM yyyy (h:mm a)' || ''}}
-            </small>
-          </div>
-        </td>
-      </tr>
+			<tr ng-cloak ng-show="eventData.comment">
+				<td colspan="1">
+						<img class="commentProfilePic" ng-src="/images/profilePicDianneFeinstein256.jpg" />
+				</td>
+				<td colspan="2">
+					<div class="comment">
+						<p>{{eventData.comment}}</p>
+						<small style="color:#bfbfbf">
+							{{eventData.commentTime | date:'dd MMM yyyy (h:mm a)' || ''}}
+						</small>
+					</div>
+				</td>
+			</tr>
 
-    </table>
+		</table>
 
-  </div>
+	</div>
 </div>
