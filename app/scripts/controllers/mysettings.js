@@ -32,6 +32,7 @@ app.controller('MysettingsCtrl', function ($scope, $http, $location) {
 			$scope.settings = d;
 		})
 		.error(function(data, status, error, config){
-			$scope.settings = [{heading:"Error",description:"Could not load json   data"}];
+			$scope.settings = [{heading:"Error", description:"Could not load json data"}];
 		});
+
 });
