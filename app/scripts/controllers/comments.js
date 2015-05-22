@@ -78,6 +78,7 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
 			});
 		};
 
+<<<<<<< HEAD
 		$scope.goto = function(u) { window.open(u, '_blank'); };
 
 		$scope.editComment = function(index, thisVote) { $scope.data[index].editing = true; };
@@ -96,3 +97,30 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
 	}); //END: StafferComments.$loaded()
 
 }]);
+=======
+            $scope.editComment = function(index, thisVote) {
+                $scope.data[index].editing = true;
+            }
+            $scope.addComment = function(index, thisVote) {
+                var voteId = thisVote.id;
+                var personId = thisVote.personId;
+                $scope.data[index].editing = false;
+                if (!$scope.comments[voteId]) {
+                    $scope.comments[voteId] = {};
+                }
+                if (!$scope.comments[voteId][personId]) {
+                    $scope.comments[voteId][personId] = [];
+                }
+                // add the latest comment to the 
+                $scope.comments[voteId][personId].unshift({
+                    'comment': $scope.data[index].comment,
+                    'datetime': new Date().getTime(),
+                });
+                $scope.comments.$save().then(function() {
+                    console.log('Success!');
+                });
+            }
+        });
+    }
+]);
+>>>>>>> origin/master

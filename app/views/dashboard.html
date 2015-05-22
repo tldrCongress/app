@@ -31,7 +31,7 @@
         </td>
 
         <td width="70%" align="left">
-          <h6 style="margin-top:0px;"><a ng-href="" target="_blank">{{eventData.question}}</a></h6>
+          <h6 style="margin-top:0px;"><a ng-href="{{eventData.url}}" target="_blank">{{eventData.question}}</a></h6>
         </td>
 
         <td style="vertical-align:top;" width="15%">
@@ -51,7 +51,12 @@
             <img class="commentProfilePic" ng-src="/images/profilePicDianneFeinstein256.jpg" />
         </td>
         <td colspan="2">
-          <div class="comment"><span>{{eventData.comment}}</span></div>
+          <div class="comment">
+            <p>{{eventData.comment}}</p>
+            <small style="color:#bfbfbf">
+              {{eventData.commentTime | date:'dd MMM yyyy (h:mm a)' || ''}}
+            </small>
+          </div>
         </td>
       </tr>
 

@@ -31,7 +31,7 @@
 
       </tr>
 
-      <tr ng-cloak ng-show="eventData.comment">
+      <tr ng-cloak>
         <td colspan="1">
             <img class="commentProfilePic" ng-src="/images/profilePicDianneFeinstein256.jpg" />
         </td>
@@ -42,7 +42,11 @@
           <div ng-cloak ng-show="eventData.comment">
             <img class="" style="width:32px;height:32px;float:left;margin-right:10px;border-radius:32px;" ng-src="/images/profilePicDianneFeinstein.jpg" />
             <div ng-hide="eventData.editing">
-              <div class="comment">{{eventData.comment}}
+              <div class="comment">
+                <p>{{eventData.comment}}</p>
+                <small style="color:#bfbfbf">
+                  {{eventData.commentTime | date:'dd MMM yyyy (h:mm a)' || ''}}
+                </small>
               <button ng-value="eventData" ng-click="editComment(eventNumber, eventData)" type="button" class="btn btn-primary btn-lg btn-block">Edit Comment</button>
               </div>
             </div>
@@ -52,7 +56,7 @@
               <textarea ng-model="eventData.comment" type="text-box" class="form-control" placeholder="Add reason for vote" rows="3"></textarea>
               </div>
               <button ng-click="addComment(eventNumber, eventData)" type="button" class="btn btn-primary btn-lg btn-block">Save</button>
-            </div>
+          </div>
           
         </td>
       </tr>
