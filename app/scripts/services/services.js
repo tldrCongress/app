@@ -79,17 +79,6 @@ app.factory('StafferComments', ['$firebaseObject', "$firebaseAuth",
 	}
 ]);
 
-
-//
-app.factory('StafferComments', ['$firebaseObject', "$firebaseAuth",
-	function($firebaseObject, $firebaseAuth) {
-		var url = 'https://blistering-inferno-7388.firebaseio.com/StafferComments/';
-		var ref = new Firebase(url);
-		return $firebaseObject(ref);
-	}
-]);
-
-
 //
 app.factory('Interests', ['$firebaseArray', 'dataShare',
 	function($firebaseArray, dataShare) {
