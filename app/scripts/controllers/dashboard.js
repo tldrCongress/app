@@ -88,9 +88,9 @@ app.controller('DashboardCtrl', ['$scope', '$location', '$http', 'StafferComment
 
     };
 
-    $scope.showEditHistory = function()
+    $scope.showEditHistory = function(thisVote)
     {
-      console.log('implement me!')
+      console.log('implement me as a modal!')
     }
 
     $scope.goto = function(u)
