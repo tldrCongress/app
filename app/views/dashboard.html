@@ -54,7 +54,10 @@
                <div class="comment">
                   <p>{{eventData.comment.content}}</p>
                   <small style="color:#bfbfbf">
-                     {{eventData.comment.datetime | date:'dd MMM yyyy (h:mm a)' || ''}}
+                     {{eventData.comment.datetime | date:'dd MMM yyyy h:mm a' || ''}}
+                  </small>
+                  <small style="color:#bfbfbf;cursor:pointer" ng-show="eventData.edited" ng-click="showEditHistory()">
+                     [Edited]
                   </small>
                </div>
             </td>

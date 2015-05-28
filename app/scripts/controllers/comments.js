@@ -63,7 +63,7 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
                 var comments = $scope.comments;
                 // Get all the person's comments
                 // Or initialize it to Null
-                var personId = 300043; // HARD CODED
+                var personId = 300043; // HARD CODED PERSON ID
                 var commentsByPerson = $scope.comments[personId] ? $scope.comments[personId] : {};
                 govtrackData.forEach(function(element) {
                     var voteId = element.vote.id;

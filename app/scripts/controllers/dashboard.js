@@ -70,10 +70,12 @@ app.controller('DashboardCtrl', ['$scope', '$location', '$http', 'StafferComment
             var personId = element.person.id;
             var voteId = element.vote.id;
             var voteData = element.vote;
+            var numEdits = commentsByPerson[voteId] ? commentsByPerson[voteId].length : 0;
 
             // Get the person's comment on the issue that we're looking at
-            var comment = commentsByPerson[voteId] ? commentsByPerson[voteId][0] : '';
-            voteData['comment'] = comment;
+            voteData['comment'] = numEdits > 0 ? commentsByPerson[voteId][0] : '';
+            voteData['edited'] = numEdits > 1 ? true : false;
+            
             voteData['voteValue'] = element.option.value;
             voteData['url'] = element.vote.link;
             $scope.data.push(voteData);
@@ -85,6 +87,11 @@ app.controller('DashboardCtrl', ['$scope', '$location', '$http', 'StafferComment
       });
 
     };
+
+    $scope.showEditHistory = function()
+    {
+      console.log('implement me!')
+    }
 
     $scope.goto = function(u)
     {
