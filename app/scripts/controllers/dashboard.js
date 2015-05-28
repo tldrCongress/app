@@ -8,7 +8,8 @@
  * Controller of the hack4CongressApp
  */
 
-app.controller('DashboardCtrl', ['$scope', '$location', '$http', 'StafferComments', function ($scope, $location, $http, StafferComments) {
+app.controller('DashboardCtrl', ['$scope', '$filter', '$location', '$http', 'StafferComments',
+ function ($scope, $filter, $location, $http, StafferComments) {
 
   StafferComments.$loaded().then(function() {
     // Initialize these objects
@@ -73,8 +74,9 @@ app.controller('DashboardCtrl', ['$scope', '$location', '$http', 'StafferComment
             var voteData = element.vote;
             var numEdits = commentsByPerson[voteId] ? commentsByPerson[voteId].length : 0;
 
+            comments = numEdits > 0 ? $filter('orderBy')(commentsByPerson[voteId], 'datetime', true) : [];
             // Get the person's comment on the issue that we're looking at
-            voteData['comment'] = numEdits > 0 ? commentsByPerson[voteId][0] : '';
+            voteData['comment'] = numEdits > 0 ? comments[0] : '';
             voteData['edited'] = numEdits > 1 ? true : false;
             // voteData['editHistory'] = null;
             voteData['personId'] = personId;
