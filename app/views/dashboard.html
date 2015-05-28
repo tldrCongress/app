@@ -52,13 +52,23 @@
             </td>
             <td colspan="2">
                <div class="comment">
-                  <p>{{eventData.comment.content}}</p>
-                  <small style="color:#bfbfbf">
-                     {{eventData.comment.datetime | date:'dd MMM yyyy (h:mm a)' || ''}}
-                  </small>
-                  <small style="color:#bfbfbf;cursor:pointer" ng-show="eventData.edited" ng-click="showEditHistory(eventData)">
-                     [Edited]
-                  </small>
+                  <div ng-hide="eventData.editHistory">
+                     <p>{{eventData.comment.content}}</p>
+                     <small style="color:#bfbfbf">
+                        {{eventData.comment.datetime | date:'dd MMM yyyy (h:mm a)' || ''}}
+                     </small>
+                     <small style="color:#bfbfbf;cursor:pointer" ng-show="eventData.edited" ng-click="showEditHistory(eventNumber, eventData)">
+                        [Edited]
+                     </small>
+                  </div>
+                  <div ng-show="eventData.editHistory">
+                     <div ng-repeat="(commentNumber, commentData) in eventData.editHistory | orderBy:'-datetime'">
+                        <p>{{commentData.content}}</p>
+                        <small style="color:#bfbfbf">
+                           {{commentData.datetime | date:'dd MMM yyyy (h:mm a)' || ''}}
+                        </small>
+                     </div>
+                  </div>
                </div>
             </td>
          </tr>

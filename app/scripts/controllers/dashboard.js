@@ -44,6 +44,7 @@ app.controller('DashboardCtrl', ['$scope', '$location', '$http', 'StafferComment
     // json data directly from govtrack
     $scope.getRepData = function(){
 
+      console.log('we are here')
       $scope.data.loaded = false;
       //Get the rep info
       $scope.repInfo = {};
@@ -75,6 +76,8 @@ app.controller('DashboardCtrl', ['$scope', '$location', '$http', 'StafferComment
             // Get the person's comment on the issue that we're looking at
             voteData['comment'] = numEdits > 0 ? commentsByPerson[voteId][0] : '';
             voteData['edited'] = numEdits > 1 ? true : false;
+            // voteData['editHistory'] = null;
+            voteData['personId'] = personId;
             
             voteData['voteValue'] = element.option.value;
             voteData['url'] = element.vote.link;
@@ -88,9 +91,11 @@ app.controller('DashboardCtrl', ['$scope', '$location', '$http', 'StafferComment
 
     };
 
-    $scope.showEditHistory = function(thisVote)
+    $scope.showEditHistory = function(index, thisVote)
     {
-      console.log('implement me as a modal!')
+      // format:
+      // [{comment: comment, datetime: datetime}, {comment: comment, datetime: datetime},... {comment: comment, datetime: datetime}]
+      $scope.data[index]['editHistory'] = $scope.comments[thisVote.personId][thisVote.id];
     }
 
     $scope.goto = function(u)
