@@ -69,10 +69,16 @@ angular.module('hack4CongressApp.services', ['firebase'])
 	}
 });
 
+app.factory("Auth", ["$firebaseAuth",
+  function($firebaseAuth) {
+    var ref = new Firebase("https://blistering-inferno-7388.firebaseio.com");
+    return $firebaseAuth(ref);
+  }
+]);
 
 //
-app.factory('StafferComments', ['$firebaseObject', "$firebaseAuth",
-	function($firebaseObject, $firebaseAuth) {
+app.factory('StafferComments', ['$firebaseObject',
+	function($firebaseObject) {
 		var url = 'https://blistering-inferno-7388.firebaseio.com/StafferComments/';
 		var ref = new Firebase(url);
 		return $firebaseObject(ref);
@@ -93,8 +99,8 @@ app.factory('Interests', ['$firebaseArray', 'dataShare',
 
 
 //
-app.factory('Events', ['$firebaseObject', 'dataShare', "$firebaseAuth",
-	function($firebaseObject, dataShare, $firebaseAuth) {
+app.factory('Events', ['$firebaseObject', 'dataShare',
+	function($firebaseObject, dataShare) {
 		if (dataShare.eventId == undefined) {
 			var eventId = new Date().getTime(); //Math.round(Math.random() * 100000000);
 			// console.log(eventId);

@@ -8,8 +8,8 @@
  * Controller of the hack4CongressApp
  */
 
-app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments', 
-  function ($scope, $location, $http, StafferComments) {
+app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments', 'Auth',
+  function ($scope, $location, $http, StafferComments, Auth) {
 
     StafferComments.$loaded().then(function() {
         // Initialize these objects
@@ -87,6 +87,27 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
             });
         };
 
+        $scope.login = function () {
+          Auth.$authWithPassword({
+            email: $scope.email,
+            password: $scope.password
+          }).then(function(authData) {
+            $scope.authData = authData;
+          }, function(error) {
+            if (error = 'INVALID_EMAIL') {
+              console.log('email invalid');
+            } else if (error = 'INVALID_PASSWORD') {
+              console.log('wrong password!');
+            } else {
+              console.log(error);
+            }
+          });
+        }
+
+        // any time auth status updates, add the user data to scope
+        Auth.$onAuth(function(authData) {
+          $scope.authData = authData;
+        });
         $scope.goto = function(u) { window.open(u, '_blank'); };
 
         $scope.editComment = function(index, thisVote) { $scope.data[index].editing = true; };
