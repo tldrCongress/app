@@ -8,29 +8,20 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse-01">
         <ul class="nav navbar-nav navbar-left">
-            <li ng-class="{active : location == '/interests'}"><a ng-href="#/interests"><i class="icon fui-heart"></i> Interests</a></li>
-            <li ng-class="{active : location == '/dashboard'}"><a ng-href="#/dashboard"><i class="icon fui-list-large-thumbnails"></i> Dashboard</a></li>
-            <li ng-class="{active : location == '/stafferDashboard'}"><a ng-href="#/stafferDashboard"><i class="icon fui-folder"></i> Staffer Dashboard</a></li>
-            <li ng-class="{active : location == '/issueCreation'}"><a ng-href="#/issueCreation"><i class="icon fui-new"></i> New Issue</a></li>
-            <li class="dropdown">
+            <li ng-class="{active : location == '/dashboard'}"><a ng-href="#/dashboard"><i class="icon fui-document"></i> Dashboard</a></li>
+            <li ng-class="{active : location == '/about'}"><a ng-href="#/about"><i class="icon fui-info-circle"></i>About</a></li>
+            <!-- <li class="dropdown">
             <a href class="dropdown-toggle" data-toggle="dropdown"><i class="icon fui-gear"></i> Settings <b class="caret"></b></a>
                 <span class="dropdown-arrow"></span>
                 <ul class="dropdown-menu">
 					<li ng-class="{active : location == '/mySettings'}"><a ng-href="#/mySettings">My Settings</a></li>
                     <li ng-class="{active : location == '/about'}"><a ng-href="#/about">Help</a></li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
-		<!-- <form class="navbar-form navbar-right" action="#" role="search">
-            <div class="form-group">
-                <div class="input-group">
-                    <input class="form-control" id="navbarInput-01" type="search" placeholder="Search" ng-focus="setSearching(true)" ng-blur="setSearching(false)">
-                    <span class="input-group-btn">
-						<button type="submit" class="btn"><span class="fui-search"></span></button>
-                    </span>
-                </div>
-            </div>
-		</form> -->
+        <ul class="nav navbar-nav navbar-right">
+            <li ng-class="{active : location == '/login'}"><a ng-href="#/login"><i class="icon fui-lock"></i>Login</a></li>
+        </ul>
     </div><!-- /.navbar-collapse -->
 </nav>
 <!--END: Mobile/tablet nav -->

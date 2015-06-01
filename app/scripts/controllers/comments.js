@@ -108,26 +108,31 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
         Auth.$onAuth(function(authData) {
           $scope.authData = authData;
         });
+        
         $scope.goto = function(u) { window.open(u, '_blank'); };
 
         $scope.editComment = function(index, thisVote) { $scope.data[index].editing = true; };
 
         $scope.addComment = function(index, thisVote) {
-            var voteId = thisVote.id;
-            var personId = thisVote.personId;
-            $scope.data[index].editing = false;
-            if (!$scope.comments[personId]) {
-                $scope.comments[personId] = {};
+            if ($scope.authData) {
+                var voteId = thisVote.id;
+                var personId = thisVote.personId;
+                $scope.data[index].editing = false;
+                if (!$scope.comments[personId]) {
+                    $scope.comments[personId] = {};
+                }
+                var comment = $scope.data[index].comment.content;
+                var datetime = Firebase.ServerValue.TIMESTAMP;
+                if (!$scope.comments[personId][voteId]) {
+                    $scope.comments[personId][voteId] = [];
+                }
+                $scope.comments[personId][voteId].unshift({'content': comment, 'datetime': datetime});
+                $scope.comments.$save().then(function() {
+                    console.log('Success!');
+                });
+            } else {
+                console.log('Not authenticated')
             }
-            var comment = $scope.data[index].comment.content;
-            var datetime = Firebase.ServerValue.TIMESTAMP;
-            if (!$scope.comments[personId][voteId]) {
-                $scope.comments[personId][voteId] = [];
-            }
-            $scope.comments[personId][voteId].unshift({'content': comment, 'datetime': datetime});
-            $scope.comments.$save().then(function() {
-                console.log('Success!');
-            });
         };
 
     }); //END: StafferComments.$loaded()
