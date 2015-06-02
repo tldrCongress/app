@@ -7,24 +7,24 @@
  * # LoginCtrl
  * Controller of the hack4CongressApp
  */
-app.controller('LoginCtrl', ['$scope', '$location', '$http', function ($scope, $location, $http) {
+app.controller('LoginCtrl', ['$scope', '$location', '$http', 'Auth',
+	function ($scope, $location, $http, Auth) {
 
-		$scope.email = '';
-		$scope.password = '';
-
-		$scope.login = function() {
-			var ref = new Firebase("https://blistering-inferno-7388.firebaseio.com");
-			ref.authWithPassword({
-				email    : $scope.email,
-				password : $scope.password
-			}, function(error, authData) {
-				if (error) {
-					console.log("Login Failed!", error);
-				} else {
-					console.log("Authenticated successfully with payload:", authData);
-					$location.path("issueCreation");
-				}
-			});
-		};
-
+		$scope.login = function () {
+          Auth.$authWithPassword({
+            email: $scope.email,
+            password: $scope.password
+          }).then(function(authData) {
+            $scope.authData = authData;
+            $location.path('/stafferDashboard');
+          }, function(error) {
+            if (error = 'INVALID_EMAIL') {
+              console.log('email invalid');
+            } else if (error = 'INVALID_PASSWORD') {
+              console.log('wrong password!');
+            } else {
+              console.log(error);
+            }
+          });
+        }
 }]);
