@@ -14,5 +14,8 @@ app.controller('NavBarCtrl', ['$scope', '$location', 'Auth',
     Auth.$onAuth(function(authData) {
       $scope.authData = authData;
     });
-
+    $scope.logout = function () {
+        $location.path('/dashboard');
+        Auth.$unauth();
+    }
 }]);

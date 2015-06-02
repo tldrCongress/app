@@ -9,7 +9,6 @@
  */
 app.controller('LoginCtrl', ['$scope', '$location', '$http', 'Auth',
 	function ($scope, $location, $http, Auth) {
-
 		$scope.login = function () {
           Auth.$authWithPassword({
             email: $scope.email,
