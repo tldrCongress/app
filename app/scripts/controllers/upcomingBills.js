@@ -75,7 +75,6 @@ app.controller('UpcomingBillsCtrlInternal', ['$scope', '$location', '$http', 'St
 
           var numEdits = commentsByPerson[bill.bill_id] ? commentsByPerson[bill.bill_id].length : 0;
           billData['comment'] = numEdits > 0 ? comments[0].comment : '';
-          billData['voteValue'] = numEdits > 0 ? comments[0].voteValue : '';
 
           $scope.data.push(billData);
         });

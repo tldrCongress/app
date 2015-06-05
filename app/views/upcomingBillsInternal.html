@@ -22,10 +22,10 @@
 
           <td width="15%" style="vertical-align:top;">
             <div ng-cloak ng-show="eventData.comment">
-              <i ng-cloak ng-hide="eventData.voteValue != 'Yea'" class="fui-check lead green"></i>
-              <i class="fui-cross lead red" ng-cloak ng-hide="eventData.voteValue != 'Nay'"></i>
-              <strong class="glyphicon glyphicon-minus" ng-cloak ng-hide="eventData.voteValue == 'Yea' || eventData.voteValue == 'Nay'" class="lead"></strong>
-              <div><span><strong>Vote:</strong>{{eventData.voteValue}}</span></div>
+              <i ng-cloak ng-hide="eventData.comment.voteValue != 'Yea'" class="fui-check lead green"></i>
+              <i class="fui-cross lead red" ng-cloak ng-hide="eventData.comment.voteValue != 'Nay'"></i>
+              <strong class="glyphicon glyphicon-minus" ng-cloak ng-hide="eventData.comment.voteValue == 'Yea' || eventData.comment.voteValue == 'Nay'" class="lead"></strong>
+              <div><span><strong>Vote:</strong>{{eventData.comment.voteValue}}</span></div>
             </div>
             <div ng-cloak ng-hide="eventData.comment">
               <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 text-center">
@@ -45,12 +45,12 @@
 
         <tr ng-cloak>
           <td colspan="1">
-              <img class="commentProfilePic" ng-src="/images/profilePicDianneFeinstein256.jpg" />
+              <img class="commentProfilePic" ng-src="/images/profilePic{{repInfo.firstname}}{{repInfo.lastname}}256.jpg" />
           </td>
           <td colspan="2">
             <!-- if there is already a comment, allow editing -->
             <div ng-cloak ng-show="eventData.comment">
-              <img class="" style="width:32px;height:32px;float:left;margin-right:10px;border-radius:32px;" ng-src="/images/profilePicDianneFeinstein.jpg" />
+              <img class="" style="width:32px;height:32px;float:left;margin-right:10px;border-radius:32px;" ng-src="/images/profilePic{{repInfo.firstname}}{{repInfo.lastname}}256.jpg" />
               <div ng-hide="eventData.editing">
                 <div class="comment">
                   <p>{{eventData.comment.content}}</p>

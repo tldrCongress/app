@@ -30,11 +30,11 @@
         </td>
 
         <td width="15%" style="vertical-align:top;" ng-cloak ng-show="eventData.comment">
-          <i ng-cloak ng-hide="eventData.voteValue != 'Yea'" class="fui-check lead green"></i>
-          <i class="fui-cross lead red" ng-cloak ng-hide="eventData.voteValue != 'Nay'"></i>
-          <strong class="glyphicon glyphicon-minus" ng-cloak ng-hide="eventData.voteValue == 'Yea' || eventData.voteValue == 'Nay'" class="lead"></strong>
+          <i ng-cloak ng-hide="eventData.comment.voteValue != 'Yea'" class="fui-check lead green"></i>
+          <i class="fui-cross lead red" ng-cloak ng-hide="eventData.comment.voteValue != 'Nay'"></i>
+          <strong class="glyphicon glyphicon-minus" ng-cloak ng-hide="eventData.comment.voteValue == 'Yea' || eventData.comment.voteValue == 'Nay'" class="lead"></strong>
 
-          <div><span><strong>Vote:</strong>{{eventData.voteValue}}</span></div>
+          <div><span><strong>Vote:</strong>{{eventData.comment.voteValue}}</span></div>
         </td>
 
       </tr>

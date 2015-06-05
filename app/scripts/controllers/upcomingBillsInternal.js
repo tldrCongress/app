@@ -23,12 +23,6 @@ app.controller('UpcomingBillsCtrlInternal', ['$scope', '$location', '$http', 'St
     $scope.location = $location.path();
     $scope.currdeg = 0; // Current position of carousel
 
-    // NOTE: this is repetitive data from dashboard.js
-    // TODO: either merge this with dashboard.js and display different data
-    // if the user is authenticated as a staffer
-    // OR keep this in a permanent state of being a separate page, but 
-    // clean-up the logic so it's not duplicated
-
     //Load the user's reps
     $http.get('/data/myReps.json')
     .success(function(d) {
@@ -75,7 +69,6 @@ app.controller('UpcomingBillsCtrlInternal', ['$scope', '$location', '$http', 'St
 
           var numEdits = commentsByPerson[bill.bill_id] ? commentsByPerson[bill.bill_id].length : 0;
           billData['comment'] = numEdits > 0 ? comments[0].comment : '';
-          billData['voteValue'] = numEdits > 0 ? comments[0].voteValue : '';
 
           $scope.data.push(billData);
         });
@@ -118,7 +111,7 @@ app.controller('UpcomingBillsCtrlInternal', ['$scope', '$location', '$http', 'St
         }
         var comment = $scope.data[index].comment.content;
         var datetime = Firebase.ServerValue.TIMESTAMP;
-        var voteValue = $scope.data[index].voteValue;
+        var voteValue = $scope.data[index].comment.voteValue;
         
         if (!$scope.comments[personId][voteId]) {
           $scope.comments[personId][voteId] = [];
@@ -134,6 +127,6 @@ app.controller('UpcomingBillsCtrlInternal', ['$scope', '$location', '$http', 'St
       }
     };
 
-  }); //END: StafferComments.$loaded()
+  }); //END: StafferCommentsUpcoming.$loaded()
 
 }]);

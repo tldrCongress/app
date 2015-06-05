@@ -33,14 +33,14 @@
 
         <tr ng-cloak>
           <td colspan="1">
-              <img class="commentProfilePic" ng-src="/images/profilePicDianneFeinstein256.jpg" />
+              <img class="commentProfilePic" ng-src="/images/profilePic{{repInfo.firstname}}{{repInfo.lastname}}256.jpg" />
           </td>
           <td colspan="2">
             
 
             <!-- if there is already a comment, allow editing -->
             <div ng-cloak ng-show="eventData.comment">
-              <img class="" style="width:32px;height:32px;float:left;margin-right:10px;border-radius:32px;" ng-src="/images/profilePicDianneFeinstein.jpg" />
+              <img class="" style="width:32px;height:32px;float:left;margin-right:10px;border-radius:32px;" ng-src="/images/profilePic{{repInfo.firstname}}{{repInfo.lastname}}256.jpg" />
               <div ng-hide="eventData.editing">
                 <div class="comment">
                   <p>{{eventData.comment.content}}</p>
