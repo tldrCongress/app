@@ -97,7 +97,7 @@ app.controller('UpcomingBillsCtrlInternal', ['$scope', '$location', '$http', 'St
           // if they're logged in but viewing a different representative's info
           // direct them to the dashboard
           if ($scope.electedId != $scope.curRep) {
-            $location.path('/dashboard');
+            $location.path('/upcomingBills');
           }
         });
       }
