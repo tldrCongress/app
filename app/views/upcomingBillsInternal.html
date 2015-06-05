@@ -12,23 +12,35 @@
       <table class="" width="100%">
         <tr>
 
-          <td style="vertical-align:top;" width="15%">
-            <small style="color:#bfbfbf">{{eventData.created | date:'dd MMM yyyy (h:mm a)' || ''}}</small>
+          <td style="vertical-align:top;" width="15%" >
+            <small style="color:#bfbfbf">{{eventData.date | date:'dd MMM yyyy (h:mm a)' || ''}}</small>
           </td>
 
           <td width="70%" align="left">
-            <h6 style="margin-top:0px;"><a ng-href="{{eventData.url}}" target="_blank">{{eventData.question}}</a></h6>
-            
+            <h6 style="margin-top:0px;"><a ng-href="{{eventData.url}}" target="_blank">{{eventData.description}}</a></h6>
           </td>
 
           <td width="15%" style="vertical-align:top;">
-            <i ng-cloak ng-hide="eventData.voteValue != 'Yea'" class="fui-check lead green"></i>
+            <div ng-cloak ng-show="eventData.comment">
+              <i ng-cloak ng-hide="eventData.voteValue != 'Yea'" class="fui-check lead green"></i>
               <i class="fui-cross lead red" ng-cloak ng-hide="eventData.voteValue != 'Nay'"></i>
               <strong class="glyphicon glyphicon-minus" ng-cloak ng-hide="eventData.voteValue == 'Yea' || eventData.voteValue == 'Nay'" class="lead"></strong>
-
               <div><span><strong>Vote:</strong>{{eventData.voteValue}}</span></div>
-          </td>
+            </div>
+            <div ng-cloak ng-hide="eventData.comment">
+              <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 text-center">
+                <div style="margin-top:19px;" class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-animate" ng-click="toggleVote(index, thisBill)" ng-class="{'bootstrap-switch-on': setting.enabled, 'bootstrap-switch-off': !setting.enabled}">
+                  <div class="bootstrap-switch-container">
+                    <span class="bootstrap-switch-handle-on bootstrap-switch-primary">ON</span>
+                    <label class="bootstrap-switch-label">&nbsp;</label>
+                    <span class="bootstrap-switch-handle-off bootstrap-switch-default">OFF</span>
+                    <input type="checkbox" data-toggle="switch">
+                  </div>
+                </div>
+              </div>
+            </div>
 
+          </td>
         </tr>
 
         <tr ng-cloak>
@@ -36,8 +48,6 @@
               <img class="commentProfilePic" ng-src="/images/profilePicDianneFeinstein256.jpg" />
           </td>
           <td colspan="2">
-            
-
             <!-- if there is already a comment, allow editing -->
             <div ng-cloak ng-show="eventData.comment">
               <img class="" style="width:32px;height:32px;float:left;margin-right:10px;border-radius:32px;" ng-src="/images/profilePicDianneFeinstein.jpg" />
@@ -57,11 +67,9 @@
                 </div>
                 <button ng-click="addComment(eventNumber, eventData)" type="button" class="btn btn-primary btn-lg btn-block">Save</button>
             </div>
-            
           </td>
         </tr>
       </table>
-
     </div>
   </div>
 </div>

@@ -13,15 +13,12 @@ app.controller('DashboardCtrl', ['$scope', '$filter', '$location', '$http', 'Sta
 
   StafferComments.$loaded().then(function() {
     // Initialize these objects
-    $scope.interestTags = ["tag0","tag1"];
-    $scope.newTag = '';
     $scope.comments = StafferComments;
     $scope.rep = {}; // Data for the current elected official
     $scope.votes = {}; // Voting record of the current elected official
     $scope.myReps = {}; // List of user's representatives (house, senate, etc...)
     $scope.data = [];
     $scope.curRep = 0;
-    $scope.searchMode = false;
 
     $scope.location = $location.path();
     $scope.currdeg = 0; // Current position of carousel
@@ -100,13 +97,7 @@ app.controller('DashboardCtrl', ['$scope', '$filter', '$location', '$http', 'Sta
       $scope.data[index]['editHistory'] = $scope.comments[thisVote.personId][thisVote.id];
     }
 
-    $scope.goto = function(u)
-    {
-      window.open(u, '_blank');
-    };
-
-    // Change the nav bar to search
-    $scope.setSearching = function(t) { $scope.searchMode=t;  };
+    $scope.goto = function(u){ window.open(u, '_blank'); };
 
 
     // Carousel control functions

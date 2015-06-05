@@ -57,6 +57,14 @@ var app = angular.module('hack4CongressApp', [
 		templateUrl: 'views/comments.html',
 		controller: 'CommentsCtrl'
 	})
+  .when('/upcomingBillsInternal', {
+    templateUrl: 'views/upcomingBillsInternal.html',
+    controller: 'UpcomingBillsCtrlInternal'
+  })
+  .when('/upcomingBills', {
+    templateUrl: 'views/upcomingBills.html',
+    controller: 'UpcomingBillsCtrl'
+  })
 	.otherwise({
 		redirectTo: '/'
 	});
