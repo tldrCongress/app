@@ -72,7 +72,7 @@ app.controller('UpcomingBillsCtrlInternal', ['$scope', '$location', '$http', 'St
           billData['date'] = bill.legislative_day;
 
           var numEdits = commentsByPerson[bill.bill_id] ? commentsByPerson[bill.bill_id].length : 0;
-          comments = numEdits > 0 ? $filter('orderBy')(commentsByPerson[bill.bill_id], 'datetime', true) : [];
+          var comments = numEdits > 0 ? $filter('orderBy')(commentsByPerson[bill.bill_id], 'datetime', true) : [];
           billData['comment'] = numEdits > 0 ? comments[0].comment : '';
 
           $scope.data.push(billData);

@@ -23,12 +23,6 @@ app.controller('DashboardCtrl', ['$scope', '$filter', '$location', '$http', 'Sta
     $scope.location = $location.path();
     $scope.currdeg = 0; // Current position of carousel
 
-    // NOTE: this is repetitive data from dashboard.js
-    // TODO: either merge this with dashboard.js and display different data
-    // if the user is authenticated as a staffer
-    // OR keep this in a permanent state of being a separate page, but 
-    // clean-up the logic so it's not duplicated
-
     //Load the user's reps
     $http.get('/data/myReps.json')
     .success(function(d) {
@@ -39,10 +33,8 @@ app.controller('DashboardCtrl', ['$scope', '$filter', '$location', '$http', 'Sta
       $scope.rep = [{heading:"Error", description:"Could not load json   data"}];
     });
 
-    // json data directly from govtrack
+    // json data from govtrack
     $scope.getRepData = function(){
-
-      console.log('we are here')
       $scope.data.loaded = false;
       //Get the rep info
       $scope.repInfo = {};
@@ -60,7 +52,6 @@ app.controller('DashboardCtrl', ['$scope', '$filter', '$location', '$http', 'Sta
       .success(function(v) {
         $scope.votes = v.objects;
         var govtrackData = v.objects;
-        var comments = $scope.comments;
         // Get all the person's comments
         // Or initialize it to Null
         var personId = 300043; // HARD CODED
@@ -71,7 +62,7 @@ app.controller('DashboardCtrl', ['$scope', '$filter', '$location', '$http', 'Sta
             var voteData = element.vote;
             var numEdits = commentsByPerson[voteId] ? commentsByPerson[voteId].length : 0;
 
-            comments = numEdits > 0 ? $filter('orderBy')(commentsByPerson[voteId], 'datetime', true) : [];
+            var comments = numEdits > 0 ? $filter('orderBy')(commentsByPerson[voteId], 'datetime', true) : [];
             // Get the person's comment on the issue that we're looking at
             voteData['comment'] = numEdits > 0 ? comments[0] : '';
             voteData['edited'] = numEdits > 1 ? true : false;
