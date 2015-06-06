@@ -33,13 +33,13 @@ app.controller('UpcomingBillsCtrlInternal', ['$scope', '$location', '$http', 'St
     $http.get('/data/myReps.json')
     .success(function(d) {
        $scope.myReps = d;
-       $scope.getRepData();
+       $scope.getBillData();
     })
     .error(function(data, status, error, config){
        $scope.rep = [{heading:"Error", description:"Could not load json data"}];
     });
     // json data directly from govtrack
-    $scope.getRepData = function(){
+    $scope.getBillData = function(){
       $scope.data.loaded = false;
       //Get the rep info
       $scope.repInfo = {};
@@ -74,6 +74,7 @@ app.controller('UpcomingBillsCtrlInternal', ['$scope', '$location', '$http', 'St
           billData['date'] = bill.legislative_day;
 
           var numEdits = commentsByPerson[bill.bill_id] ? commentsByPerson[bill.bill_id].length : 0;
+          comments = numEdits > 0 ? $filter('orderBy')(commentsByPerson[bill.bill_id], 'datetime', true) : [];
           billData['comment'] = numEdits > 0 ? comments[0].comment : '';
 
           $scope.data.push(billData);

@@ -27,13 +27,15 @@ app.controller('UpcomingBillsCtrlInternal', ['$scope', '$location', '$http', 'St
     $http.get('/data/myReps.json')
     .success(function(d) {
        $scope.myReps = d;
-       $scope.getRepData();
+       $scope.getBillData();
     })
     .error(function(data, status, error, config){
        $scope.rep = [{heading:"Error", description:"Could not load json data"}];
     });
-    // json data directly from govtrack
-    $scope.getRepData = function(){
+    
+    // Send a request to the Sunlight API for all upcoming bills
+    // Matches the bills to the comments we have inside Firebase
+    $scope.getBillData = function(){
       $scope.data.loaded = false;
       //Get the rep info
       $scope.repInfo = {};
@@ -58,6 +60,8 @@ app.controller('UpcomingBillsCtrlInternal', ['$scope', '$location', '$http', 'St
         + sunlightKey;
 
       $scope.bills = {};
+
+      // Get JSON data from Sunlight for upcoming bills
       $http.get(sunlightEndpoint)
       .success(function(bills) {
         $scope.bills = sunlightData = bills.results;
@@ -68,6 +72,7 @@ app.controller('UpcomingBillsCtrlInternal', ['$scope', '$location', '$http', 'St
           billData['date'] = bill.legislative_day;
 
           var numEdits = commentsByPerson[bill.bill_id] ? commentsByPerson[bill.bill_id].length : 0;
+          comments = numEdits > 0 ? $filter('orderBy')(commentsByPerson[bill.bill_id], 'datetime', true) : [];
           billData['comment'] = numEdits > 0 ? comments[0].comment : '';
 
           $scope.data.push(billData);
@@ -96,11 +101,16 @@ app.controller('UpcomingBillsCtrlInternal', ['$scope', '$location', '$http', 'St
       }
     });
 
+    // IMPLEMENT ME!!
     $scope.toggleVote = function(index, thisBill) {
       console.log('toggle!')
     }
+    // returns true or false for whether we're the comment is currently being edited
     $scope.editComment = function(index, thisBill) { $scope.data[index].editing = true; };
 
+    // Saves the staffer's comment to Firebase
+    // Staffer comments are stored in an array with the following format
+    // [{'content': actual, 'datetime': currTime, 'voteValue': yay/nay}, ..., {'content': actual, 'datetime': currTime, 'voteValue': yay/nay},]
     $scope.addComment = function(index, thisBill) {
       if ($scope.authData) {
         var voteId = thisBill.id;
