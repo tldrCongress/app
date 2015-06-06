@@ -69,12 +69,14 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
           var voteId = element.vote.id;
           var voteData = element.vote;
 
+          var numEdits = commentsByPerson[voteId] ? commentsByPerson[voteId].length : 0;
+          var comments = numEdits > 0 ? $filter('orderBy')(commentsByPerson[voteId], 'datetime', true) : [];
+          
           // Get the person's comment on the issue that we're looking at
-          var comment = commentsByPerson[voteId] ? commentsByPerson[voteId][0] : '';
-          voteData['comment'] = comment;
+          voteData['comment'] = numEdits > 0 ? comments[0] : '';
 
           // Allow for easy editing if there is no comment for this issue
-          voteData['editing'] = comment ? false : true;
+          voteData['editing'] = numEdits > 0 ? false : true;
           voteData['voteValue'] = element.option.value;
           voteData['personId'] = personId;
           voteData['url'] = element.vote.link;
