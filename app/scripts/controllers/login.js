@@ -17,9 +17,9 @@ app.controller('LoginCtrl', ['$scope', '$location', '$http', 'Auth',
     $scope.authData = authData;
     $location.path('/stafferDashboard');
     }, function(error) {
-    if (error = 'INVALID_EMAIL') {
+    if (error == 'INVALID_EMAIL') {
       alert('email invalid');
-    } else if (error = 'INVALID_PASSWORD') {
+    } else if (error == 'INVALID_PASSWORD') {
       alert('wrong password!');
     } else {
       alert('Oops, something went wrong :(');

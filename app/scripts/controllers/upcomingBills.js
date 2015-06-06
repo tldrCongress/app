@@ -38,7 +38,15 @@ app.controller('UpcomingBillsCtrlInternal', ['$scope', '$location', '$http', 'St
     .error(function(data, status, error, config){
        $scope.rep = [{heading:"Error", description:"Could not load json data"}];
     });
-    // json data directly from govtrack
+    
+    $scope.showEditHistory = function(index, thisBill)
+    {
+      // format:
+      // [{comment: comment, datetime: datetime}, {comment: comment, datetime: datetime},... {comment: comment, datetime: datetime}]
+      $scope.data[index]['editHistory'] = $scope.comments[$scope.currRep][thisBill.id];
+    }
+
+    // json data from Sunlight
     $scope.getBillData = function(){
       $scope.data.loaded = false;
       //Get the rep info
