@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc function
- * @name hack4CongressApp.controller:CommentsCtrl
+ * @name hack4CongressApp.controller:UpcomingBillsCtrlInternal
  * @description
- * # CommentsCtrl
+ * # UpcomingBillsCtrlInternal
  * Controller of the hack4CongressApp
  */
 

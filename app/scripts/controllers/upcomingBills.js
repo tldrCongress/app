@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name hack4CongressApp.controller:CommentsCtrl
+ * @name hack4CongressApp.controller:UpcomingBillsCtrl
  * @description
- * # CommentsCtrl
+ * # UpcomingBillsCtrl
  * Controller of the hack4CongressApp
  */
 
-app.controller('UpcomingBillsCtrlInternal', ['$scope', '$location', '$http', 'StafferCommentsUpcoming', '$filter',
+app.controller('UpcomingBillsCtrl', ['$scope', '$location', '$http', 'StafferCommentsUpcoming', '$filter',
   function ($scope, $location, $http, StafferCommentsUpcoming, $filter) {
 
   StafferCommentsUpcoming.$loaded().then(function() {
