@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc function
- * @name hack4CongressApp.controller:CommentsCtrl
+ * @name hack4CongressApp.controller:DashboardCtrl
  * @description
- * # CommentsCtrl
+ * # DashboardCtrl
  * Controller of the hack4CongressApp
  */
 
