@@ -43,7 +43,8 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
       $scope.data.loaded = false;
       //Get the rep info
       $scope.repInfo = {};
-      $http.get('https://www.govtrack.us/api/v2/person/'+$scope.myReps[$scope.curRep].id)
+      console.log($scope.myReps)
+      $http.get('https://www.govtrack.us/api/v2/person/'+$scope.myReps[0].id)
       .success(function(d) {
         $scope.repInfo = d;
       })

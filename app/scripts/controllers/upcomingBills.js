@@ -23,7 +23,7 @@ app.controller('UpcomingBillsCtrl', ['$scope', '$location', '$http', 'StafferCom
     $scope.location = $location.path();
     $scope.currdeg = 0; // Current position of carousel
 
-    // NOTE: this is repetitive data from dashboard.js
+    // NOTE: this is repetitive code from dashboard.js
     // TODO: either merge this with dashboard.js and display different data
     // if the user is authenticated as a staffer
     // OR keep this in a permanent state of being a separate page, but 
