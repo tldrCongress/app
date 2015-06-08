@@ -51,7 +51,8 @@ app.controller('UpcomingBillsCtrl', ['$scope', '$location', '$http', 'StafferCom
       $scope.data.loaded = false;
       //Get the rep info
       $scope.repInfo = {};
-      $http.get('https://www.govtrack.us/api/v2/person/'+$scope.myReps[$scope.curRep].id)
+      var repIndex = 0; // HARD CODED FOR NOW
+      $http.get('https://www.govtrack.us/api/v2/person/'+$scope.myReps[repIndex].id)
       .success(function(d) {
         $scope.repInfo = d;
         $scope.repRole = $filter('filter')(d.roles, {current:true})[0].role_type;
@@ -62,6 +63,7 @@ app.controller('UpcomingBillsCtrl', ['$scope', '$location', '$http', 'StafferCom
 
       // CHANGE ME
       var personId = 300043; // HARD CODED PERSON ID
+      var commentsByPerson = $scope.comments[personId] ? $scope.comments[personId] : {};
 
       var chamber = $scope.repRole == 'senator' ? 'senate' : 'house';
       var sunlightKey = 'c261516221324552a36c3bd9fc8e5383';
@@ -74,15 +76,16 @@ app.controller('UpcomingBillsCtrl', ['$scope', '$location', '$http', 'StafferCom
       $scope.bills = {};
       $http.get(sunlightEndpoint)
       .success(function(bills) {
-        $scope.bills = sunlightData = bills.results;
+        var sunlightData = $scope.bills = bills.results;
         sunlightData.forEach(function(bill) {
+          var billData = [];
           billData['id'] = bill.bill_id;
           billData['url'] = bill.bill_url;
           billData['description'] = bill.description;
           billData['date'] = bill.legislative_day;
 
           var numEdits = commentsByPerson[bill.bill_id] ? commentsByPerson[bill.bill_id].length : 0;
-          comments = numEdits > 0 ? $filter('orderBy')(commentsByPerson[bill.bill_id], 'datetime', true) : [];
+          var comments = numEdits > 0 ? $filter('orderBy')(commentsByPerson[bill.bill_id], 'datetime', true) : [];
           billData['comment'] = numEdits > 0 ? comments[0].comment : '';
 
           $scope.data.push(billData);

@@ -61,7 +61,6 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
       .success(function(v) {
         $scope.votes = v.objects;
         var govtrackData = v.objects;
-        var comments = $scope.comments;
         // Get all the person's comments
         // Or initialize it to Null
         var personId = 300043; // HARD CODED PERSON ID
