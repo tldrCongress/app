@@ -86,6 +86,15 @@ app.factory('StafferComments', ['$firebaseObject',
 ]);
 
 //
+app.factory('StafferCommentsUpcoming', ['$firebaseObject',
+  function($firebaseObject) {
+    var url = 'https://blistering-inferno-7388.firebaseio.com/StafferCommentsUpcoming/';
+    var ref = new Firebase(url);
+    return $firebaseObject(ref);
+  }
+]);
+
+//
 app.factory('ContentCreators', ['$firebaseObject',
   function($firebaseObject) {
     var url = 'https://blistering-inferno-7388.firebaseio.com/ContentCreators/';
