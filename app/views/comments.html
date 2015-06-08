@@ -1,4 +1,4 @@
-<div ng-show='electedId == curRep'>
+<div ng-cloak ng-show='electedId == curRep'>
   <div class="row-fluid clearfix loading loading32" ng-hide="data.loaded"></div>
   <div class="row-fluid clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -65,6 +65,6 @@
     </div>
   </div>
 </div>
-<div ng-show="electedId!=curRep">
-  <span> You do not have permissions to add comments for this representative. If this is a mistake, please contact us.</span>
+<div ng-cloak ng-show="electedId!=curRep">
+  <span> You do not have permissions to add comments for this representative. If this is an error, please contact us.</span>
 </div>
