@@ -98,6 +98,7 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
         $scope.authData = authData;
         ContentCreators.$loaded().then(function() {
           $scope.electedId = ContentCreators[authData.uid].elected;
+          console.log($scope.electedId)
           // if they're logged in but viewing a different representative's info
           // direct them to the dashboard
           if ($scope.electedId != $scope.curRep) {
