@@ -43,8 +43,8 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
       $scope.data.loaded = false;
       //Get the rep info
       $scope.repInfo = {};
-      console.log($scope.myReps)
-      $http.get('https://www.govtrack.us/api/v2/person/'+$scope.myReps[0].id)
+      var repIndex = 0; // HARD CODED
+      $http.get('https://www.govtrack.us/api/v2/person/'+$scope.myReps[repIndex].id)
       .success(function(d) {
         $scope.repInfo = d;
       })
@@ -97,7 +97,6 @@ app.controller('CommentsCtrl', ['$scope', '$location', '$http', 'StafferComments
         $scope.authData = authData;
         ContentCreators.$loaded().then(function() {
           $scope.electedId = ContentCreators[authData.uid].elected;
-          console.log($scope.electedId)
           // if they're logged in but viewing a different representative's info
           // direct them to the dashboard
           if ($scope.electedId != $scope.curRep) {
